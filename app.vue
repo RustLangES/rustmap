@@ -29,6 +29,5 @@ Ya sea que desees desarrollar aplicaciones de sistemas, videojuegos, criptomoned
 </script>
 
 <template>
-  <div>
-  </div>
+  <Header />
 </template>
