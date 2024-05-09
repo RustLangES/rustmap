@@ -1,7 +1,7 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   devtools: { enabled: true },
-  modules: [ "@nuxt/content", "@unocss/nuxt" ],
+  modules: [ "@nuxt/content", "@unocss/nuxt", "@nuxtjs/seo" ],
   site: {
     name: 'Hoja de Ruta Definitiva para Aprender Rust: Desde Principiante hasta Experto',
     description: `
@@ -10,6 +10,9 @@ Aprenderás a través de ejemplos prácticos, ejercicios desafiantes y proyectos
 Ya sea que desees desarrollar aplicaciones de sistemas, videojuegos, criptomonedas o cualquier otro proyecto, nuestra hoja de ruta te preparará para dominar Rust y destacarte en el mundo del desarrollo de software. ¡Comienza tu viaje hoy y conviértete en un experto en Rust!
     `,
     defaultLocale: 'es'
+  },
+  ogImage: {
+    runtimeChromium: false,
   },
   app: {
     head: {

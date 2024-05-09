@@ -19,6 +19,13 @@
     "vue-router": "^4.3.0"
   },
   "devDependencies": {
+    "@nuxtjs/seo": "^2.0.0-rc.10",
     "@unocss/nuxt": "^0.60.0"
-  }
+  },
+  "trustedDependencies": [
+    "@fortawesome/fontawesome-common-types",
+    "@fortawesome/free-regular-svg-icons",
+    "@fortawesome/free-solid-svg-icons",
+    "json-editor-vue"
+  ]
 }
