@@ -1,6 +1,6 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  devtools: { enabled: true },
+  devtools: { enabled: false },
   modules: [ "@nuxt/content", "@nuxtjs/tailwindcss", "@nuxtjs/seo" ],
   site: {
     name: 'Hoja de Ruta Definitiva para Aprender Rust: Desde Principiante hasta Experto',

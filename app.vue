@@ -7,7 +7,7 @@ Ya sea que desees desarrollar aplicaciones de sistemas, videojuegos, criptomoned
     `
   useHead({
     bodyAttrs: {
-      class: 'bg-orange-200 dark:bg-[#131313]/90 bg-center bg-fixed dark:bg-kaku dark:bri dark:bg-cover dark:bg-blend-darken dark:backdrop-blur-xl overflow-x-hidden dark:text-[#e2cea9]'
+      class: 'bg-orange-200 dark:bg-[#131313]/90 w-screen h-screen bg-center bg-fixed dark:bg-kaku dark:bri dark:bg-cover dark:bg-blend-darken dark:backdrop-blur-xl overflow-x-hidden dark:text-[#e2cea9]'
     }
   })
 
@@ -26,8 +26,54 @@ Ya sea que desees desarrollar aplicaciones de sistemas, videojuegos, criptomoned
   })
 
   defineOgImageComponent('Home', { title })
+
+
+  import { ref } from 'vue'
+  import { VueFlow } from '@vue-flow/core'
+  import { MiniMap } from '@vue-flow/minimap'
+  import { Controls } from '@vue-flow/controls'
+
+  const elements = ref([
+    { id: '1', type: 'input', label: 'Node 1', position: { x: 250, y: 5 } },
+    { id: '2', label: 'Node 2', position: { x: 100, y: 100 }, },
+    { id: '3', label: 'Node 3', position: { x: 400, y: 100 } },
+    { id: '4', type: 'output', label: 'Node 4', position: { x: 400, y: 200 } },
+    { id: 'e1-3', source: '1', target: '3', animated: true },
+    { id: 'e1-2', source: '1', target: '2', animated: true },
+  ])
 </script>
 
 <template>
   <Header />
+  <VueFlow
+    fit-view-on-init
+    v-model="elements"
+    :apply-changes="false"
+    :nodes-draggable="false"
+    class="min-h-screen min-w-full"
+    >
+    <MiniMap pannable zoomable />
+    <Controls position="bottom-left" showInteractive="false" />
+  </VueFlow>
 </template>
+
+<style>
+  @import '@vue-flow/core/dist/style.css';
+
+  @import '@vue-flow/core/dist/theme-default.css';
+  /* Plugins */
+  @import '@vue-flow/minimap/dist/style.css';
+  @import '@vue-flow/controls/dist/style.css';
+
+  html,
+  body,
+  #app {
+    margin: 0;
+    height: 100%;
+  }
+
+.vue-flow__minimap {
+  transform: scale(75%);
+  transform-origin: bottom right;
+}
+</style>
