@@ -52,8 +52,8 @@ Ya sea que desees desarrollar aplicaciones de sistemas, videojuegos, criptomoned
     :nodes-draggable="false"
     class="min-h-screen min-w-full"
     >
-    <MiniMap pannable zoomable />
-    <Controls position="bottom-left" showInteractive="false" />
+    <MiniMap position="top-right" pannable zoomable />
+    <Controls position="top-left" showInteractive="false" />
   </VueFlow>
 </template>
 
@@ -72,8 +72,5 @@ Ya sea que desees desarrollar aplicaciones de sistemas, videojuegos, criptomoned
     height: 100%;
   }
 
-.vue-flow__minimap {
-  transform: scale(75%);
-  transform-origin: bottom right;
-}
+.vue-flow__minimap { transform: scale(75%); }
 </style>
