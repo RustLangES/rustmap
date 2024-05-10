@@ -1,7 +1,7 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   devtools: { enabled: true },
-  modules: [ "@nuxt/content", "@unocss/nuxt", "@nuxtjs/seo" ],
+  modules: [ "@nuxt/content", "@nuxtjs/tailwindcss", "@nuxtjs/seo" ],
   site: {
     name: 'Hoja de Ruta Definitiva para Aprender Rust: Desde Principiante hasta Experto',
     description: `
@@ -19,8 +19,5 @@ Ya sea que desees desarrollar aplicaciones de sistemas, videojuegos, criptomoned
       charset: 'utf-8',
       viewport: 'width=device-width, initial-scale=1'
     }
-  },
-  unocss: {
-    attributify: true
   },
 })
