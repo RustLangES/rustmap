@@ -1,11 +1,29 @@
 <script setup>
   import Card from './Card.vue'
+  import { useVueFlow } from '@vue-flow/core'
 
   const props = defineProps({
     data: Object,
     label: {
       type: String,
     },
+  })
+
+  const { 
+    onNodeClick, 
+    onNodeDoubleClick, 
+  } = useVueFlow()
+  // TODO: check if this node is complete to change style
+
+  // TODO: open side content
+  onNodeClick(({ node }) => {
+    if (node.type == "topics") return
+    console.log(node)
+  })
+  // TODO: animate all path if have event.node.data.topicLevel.eq()
+  onNodeDoubleClick(({ node }) => {
+    if (node.type == "topics") return
+    console.log(node)
   })
 </script>
 
