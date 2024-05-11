@@ -4,12 +4,15 @@
   import { MiniMap } from '@vue-flow/minimap'
   import { Controls } from '@vue-flow/controls'
   import NodeCard from './NodeCard.vue'
+  import TransparentCard from './NodeTransparent.vue'
 
   const elements = ref([
-    { id: '1', type: 'custom', label: 'Node 1', position: { x: 250, y: 5 } },
+    { id: '0', type: 'transparent', label: 'Rust', position: { x: 262, y: 0 } },
+    { id: '1', type: 'custom', label: 'Introducción al Lenguaje', position: { x: 180, y: 50 } },
     { id: '2', type: 'custom', label: 'Node 2', position: { x: 100, y: 100 }, },
     { id: '3', type: 'custom', label: 'Node 3', position: { x: 400, y: 100 } },
     { id: '4', type: 'custom', label: 'Node 4', position: { x: 400, y: 200 } },
+    { id: 'e0-1', source: '0', target: '1', animated: true },
     { id: 'e1-3', source: '1', target: '3', animated: true },
     { id: 'e1-2', source: '1', target: '2', animated: true },
     { id: 'e3-4', source: '3', target: '4', animated: true },
@@ -22,6 +25,7 @@
     v-model="elements"
     :apply-changes="false"
     :nodes-draggable="false"
+    :edges-updatable="false"
     class="min-h-screen min-w-full"
     >
     <MiniMap
@@ -38,15 +42,14 @@
     <template #node-custom="props">
       <NodeCard :label="props.label" />
     </template>
+    <template #node-transparent="props">
+      <TransparentCard :label="props.label" />
+    </template>
   </VueFlow>
 </template>
 
 <style>
   @import '@vue-flow/core/dist/style.css';
-  @import '@vue-flow/minimap/dist/style.css';
-  @import '@vue-flow/controls/dist/style.css';
-
-  .vue-flow__edge-path { background: #fff; }
 
   /*
    * Controls
@@ -66,6 +69,24 @@
   .vue-flow__controls-button:hover,
   .vue-flow__controls-button:hover svg {
     background-color: #f97316;
+  }
+  .vue-flow__controls-button:disabled { pointer-events: none; }
+  .vue-flow__controls-button:disabled svg { fill-opacity: 0.4; }
+  .vue-flow__controls-button {
+    box-sizing: content-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+    user-select: none;
+    padding: 5px;
+  }
+  .vue-flow__controls-button svg {
+    width: 100%;
+    max-width: 12px;
+    max-height: 12px;
   }
 
   /*
