@@ -4,17 +4,19 @@
   import { MiniMap } from '@vue-flow/minimap'
   import { Controls } from '@vue-flow/controls'
   import NodeCard from './NodeCard.vue'
+  import NodeTopics from './NodeTopics.vue'
   import TransparentCard from './NodeTransparent.vue'
 
   const elements = ref([
-    { id: '0', type: 'transparent', label: 'Rust', position: { x: 262, y: 0 } },
-    { id: '1', type: 'custom', label: 'Introducción al Lenguaje', position: { x: 180, y: 50 } },
-    { id: '2', type: 'custom', label: 'Node 2', position: { x: 100, y: 100 }, },
-    { id: '3', type: 'custom', label: 'Node 3', position: { x: 400, y: 100 } },
-    { id: '4', type: 'custom', label: 'Node 4', position: { x: 400, y: 200 } },
+    { id: '00', type: 'topics', position: { x: 0, y: -150 }, data: { topicLevel: 'start' } },
+    { id: '0', type: 'transparent', label: 'Rust', data: { topicLevel: 'none' }, position: { x: 262, y: 0 } },
+    { id: '1', type: 'custom', label: 'Introducción al Lenguaje', position: { x: 180, y: 50 }, data: { topicLevel: 'start' } },
+    { id: '2', type: 'custom', label: 'Node 2', position: { x: 100, y: 100 }, data: { topicLevel: 'medium' } },
+    { id: '3', type: 'custom', label: 'Node 3', position: { x: 400, y: 100 }, data: { topicLevel: 'hard' } },
+    { id: '4', type: 'custom', label: 'Node 4', position: { x: 400, y: 200 }, data: { topicLevel: 'other' } },
     { id: 'e0-1', source: '0', target: '1', animated: true },
     { id: 'e1-3', source: '1', target: '3', animated: true },
-    { id: 'e1-2', source: '1', target: '2', animated: true },
+    { id: 'e1-2', source: '1', target: '2' },
     { id: 'e3-4', source: '3', target: '4', animated: true },
   ])
 </script>
@@ -40,10 +42,13 @@
       />
 
     <template #node-custom="props">
-      <NodeCard :label="props.label" />
+      <NodeCard :label="props.label" :data="props.data" />
     </template>
     <template #node-transparent="props">
       <TransparentCard :label="props.label" />
+    </template>
+    <template #node-topics="props">
+      <NodeTopics />
     </template>
   </VueFlow>
 </template>
