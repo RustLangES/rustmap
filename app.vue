@@ -1,5 +1,6 @@
 <script setup>
-  import Ruadmap from './components/Roadmap.vue'
+  import Roadmap from './components/Roadmap.vue'
+  import HeroSection from './layouts/hero.vue'
   const title = 'Hoja de Ruta Definitiva para Aprender Rust: Desde Principiante hasta Experto'
   const description = `
 ¿Estás listo para dominar uno de los lenguajes de programación más potentes y eficientes? Nuestra hoja de ruta te guiará paso a paso en tu viaje de aprendizaje de Rust, desde los conceptos básicos hasta las técnicas avanzadas. Diseñada para principiantes y desarrolladores experimentados, esta guía exhaustiva te ayudará a construir una sólida base en Rust y a aprovechar al máximo su rendimiento, seguridad y concurrencia.
@@ -31,5 +32,6 @@ Ya sea que desees desarrollar aplicaciones de sistemas, videojuegos, criptomoned
 
 <template>
   <Header />
+  <HeroSection />
   <Roadmap />
 </template>

@@ -5,15 +5,8 @@
   import { Controls } from '@vue-flow/controls'
   import NodeCard from './NodeCard.vue'
   import NodeTopics from './NodeTopics.vue'
-  import NodeLinks from './NodeLinks.vue'
   import TransparentCard from './NodeTransparent.vue'
 
-
-const information = [
-    { "id": "SOOyPLIqs2dE5QDJ0Ec_5", "width": 200, "type": "links", "position": { "x": 0, "y": -300 } },
-    { id: "_MzQ9h_cwZ05xuQbed5rx", type: "custom", position: { x: 0, y: -350 }, label: "Hecho con ❤️ por RustLangES", data: { label: "Hecho con ❤️ por RustLangES", withoutIcon: true } },
-    { id: '00', type: 'topics', position: { x: 0, y: -150 }, data: { topicLevel: 'start' } },
-]
 
 const introductionSection = [
     { id: 'eintro-intro1', source: 'intro', target: 'intro1', data: { level: 'start' }},
@@ -32,7 +25,7 @@ const introductionSection = [
 ]
 
   const elements = ref([
-    ...information,
+    { id: '00', type: 'topics', position: { x: 0, y: -150 }, data: { topicLevel: 'start' } },
     { id: '0', type: 'transparent', label: 'Rust', data: { topicLevel: 'none' }, position: { x: 262, y: 0 } },
     { id: 'intro', type: 'custom', label: 'Introducción al Lenguaje', position: { x: 180, y: 50 }, data: { topicLevel: 'start', targetPosition: ['right'] } },
     
@@ -78,9 +71,6 @@ const introductionSection = [
     </template>
     <template #node-topics="props">
       <NodeTopics />
-    </template>
-    <template #node-links="props">
-      <NodeLinks />
     </template>
   </VueFlow>
 </template>
