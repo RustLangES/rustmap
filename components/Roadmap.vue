@@ -5,20 +5,42 @@
   import { Controls } from '@vue-flow/controls'
   import NodeCard from './NodeCard.vue'
   import NodeTopics from './NodeTopics.vue'
+  import NodeLinks from './NodeLinks.vue'
   import TransparentCard from './NodeTransparent.vue'
 
-  const elements = ref([
+
+const information = [
+    { "id": "SOOyPLIqs2dE5QDJ0Ec_5", "width": 200, "type": "links", "position": { "x": 0, "y": -300 } },
+    { id: "_MzQ9h_cwZ05xuQbed5rx", type: "custom", position: { x: 0, y: -350 }, label: "Hecho con ❤️ por RustLangES", data: { label: "Hecho con ❤️ por RustLangES", withoutIcon: true } },
     { id: '00', type: 'topics', position: { x: 0, y: -150 }, data: { topicLevel: 'start' } },
+]
+
+const introductionSection = [
+    { id: 'eintro-intro1', source: 'intro', target: 'intro1', animated: true },
+    { id: 'eintro-intro2', source: 'intro', target: 'intro2', animated: true },
+    { id: 'eintro-intro3', source: 'intro', target: 'intro3', animated: true },
+    { id: 'eintro-intro4', source: 'intro', target: 'intro4', animated: true },
+
+    { id: "intro1", type: "custom", position: { x: 500, y: 0 }, width: 145, label: "¿Que es Rust?", data: { topicLevel: 'start' } },
+    { id: "intro2", type: "custom", position: { x: 650, y: 0 }, width: 145, label: "¿Por qué Rust?", data: { topicLevel: 'start' } },
+    { id: "intro3", type: "custom", position: { x: 500, y: 40 }, width: 300, label: "Stable, Beta, Nightly. ¿Que es esto?", data: { topicLevel: 'start' } },
+    
+    { id: "intro4", type: "custom", position: { x: 500, y: 100 }, width: 300, height: 200, label: "Configura tu entorno", data: { sourcePosition: ['top'], withoutIcon: true, noInteractive: true, moreTransparency: true } },
+
+    { id: "intro4-a", type: "custom", position: { x: 500, y: 150 }, width:300,label: "Instalar Rustup", data: { topicLevel: 'start' } },
+    { id: "intro4-b", type: "custom", position: { x: 500, y: 200 }, width:300,label: "Configura tu Editor de código", data: { topicLevel: 'start' } },
+    { id: "intro4-c", type: "custom", position: { x: 500, y: 250 }, width:300, label: "Ejecuta tu primer programa", data: { topicLevel: 'start' } },
+]
+
+  const elements = ref([
+    ...information,
     { id: '0', type: 'transparent', label: 'Rust', data: { topicLevel: 'none' }, position: { x: 262, y: 0 } },
-    { id: '1', type: 'custom', label: 'Introducción al Lenguaje', position: { x: 180, y: 50 }, data: { topicLevel: 'start' } },
-    { id: '2', type: 'custom', label: 'Node 2', position: { x: 100, y: 100 }, data: { topicLevel: 'medium' } },
-    { id: '3', type: 'custom', label: 'Node 3', position: { x: 400, y: 100 }, data: { topicLevel: 'hard' } },
-    { id: '4', type: 'custom', label: 'Node 4', position: { x: 400, y: 200 }, data: { topicLevel: 'other' } },
-    { id: 'e0-1', source: '0', target: '1', animated: true },
-    { id: 'e1-3', source: '1', target: '3', animated: true },
-    { id: 'e1-2', source: '1', target: '2' },
-    { id: 'e3-4', source: '3', target: '4', animated: true },
-  ])
+    { id: 'intro', type: 'custom', label: 'Introducción al Lenguaje', position: { x: 180, y: 50 }, data: { topicLevel: 'start', targetPosition: ['right'] } },
+    
+    
+    ...introductionSection,
+    { id: 'basico', type: 'custom', label: 'Aprende lo Básico', position: { x: 0, y: 250 }, data: { topicLevel: 'start', targetPosition: ['right'] } },
+    ])
 </script>
 
 <template>
@@ -50,6 +72,9 @@
     <template #node-topics="props">
       <NodeTopics />
     </template>
+    <template #node-links="props">
+        <NodeLinks />
+      </template>
   </VueFlow>
 </template>
 

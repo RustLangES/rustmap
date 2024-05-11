@@ -3,6 +3,9 @@
     noInteractive: {
       type: Boolean
     },
+    moreTransparency: {
+      type: Boolean
+    },
   })
 
   const classObject = computed(() => [
@@ -10,12 +13,16 @@
     'dark:hover:bg-zinc-900/40',
     'hover:cursor-pointer'
   ].map(c => ({ [c]: !props.noInteractive })))
+
+  const moreTransparency = computed(() => [
+    'dark:bg-black/20',
+    'dark:hover:bg-black/20',
+  ].map(c => ({ [c]: props.moreTransparency })))
 </script>
 
 <template >
   <div
-    class="group border border-black py-0.5 px-2 bg-orange-50 dark:bg-black/40 drop-shadow-[0_0_0_rgba(0,0,0)] transition justify-between"
-    :class="classObject">
+    class="group border border-black py-1 px-2 h-full bg-orange-50 dark:bg-black/40 drop-shadow-[0_0_0_rgba(0,0,0)] transition w-full justify-start" :class="[classObject, moreTransparency]">
     <slot></slot>
   </div>
 </template>
