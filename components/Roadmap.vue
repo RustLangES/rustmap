@@ -17,15 +17,14 @@ const information = [
 
 const introductionSection = [
     { id: 'eintro-intro1', source: 'intro', target: 'intro1', data: { level: 'start' }},
-    { id: 'eintro-intro2', source: 'intro', target: 'intro2', data: { level: 'start' }},
     { id: 'eintro-intro3', source: 'intro', target: 'intro3', data: { level: 'start' }},
     { id: 'eintro-intro4', source: 'intro', target: 'intro4', data: { level: 'start' }},
 
     { id: "intro1", type: "custom", position: { x: 500, y: 0 }, width: 145, label: "¿Que es Rust?", data: { topicLevel: 'start', sourcePosition: ['left'] } },
     { id: "intro2", type: "custom", position: { x: 650, y: 0 }, width: 145, label: "¿Por qué Rust?", data: { topicLevel: 'start' } },
-    { id: "intro3", type: "custom", position: { x: 500, y: 40 }, width: 300, label: "Stable, Beta, Nightly. ¿Que es esto?", data: { topicLevel: 'start' } },
+    { id: "intro3", type: "custom", position: { x: 500, y: 40 }, width: 300, label: "Stable, Beta, Nightly. ¿Que es esto?", data: { topicLevel: 'start', sourcePosition: ['left'] } },
     
-    { id: "intro4", type: "custom", position: { x: 500, y: 100 }, width: 300, height: 200, label: "Configura tu entorno", data: { sourcePosition: ['top'], withoutIcon: true, noInteractive: true, moreTransparency: true } },
+    { id: "intro4", type: "custom", position: { x: 500, y: 100 }, width: 300, height: 200, label: "Configura tu entorno", data: { sourcePosition: ['left'], withoutIcon: true, noInteractive: true, moreTransparency: true } },
 
     { id: "intro4-a", type: "custom", position: { x: 500, y: 150 }, width:300,label: "Instalar Rustup", data: { topicLevel: 'start' } },
     { id: "intro4-b", type: "custom", position: { x: 500, y: 200 }, width:300,label: "Configura tu Editor de código", data: { topicLevel: 'start' } },
