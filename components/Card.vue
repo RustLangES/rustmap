@@ -8,7 +8,7 @@
   const classObject = computed(() => [
     'hover:bg-orange-500',
     'dark:hover:bg-zinc-900/40',
-    'hover:drop-shadow-[-4px_-4px_0_rgba(0,0,0)'
+    'hover:drop-shadow-[-4px_-4px_0_rgba(0,0,0)]'
   ].map(c => ({ [c]: !props.noInteractive })))
 </script>
 
