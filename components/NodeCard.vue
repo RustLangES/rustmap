@@ -34,12 +34,12 @@
 <template>
   <Handle v-if="props.data.sourcePosition?.includes('right')" type="source" :position="Position.Right"  />
   <Handle v-if="props.data.sourcePosition?.includes('top')" type="source" :position="Position.Top"  />
-  <Handle v-if="props.data.sourcePosition?.includes('left')" type="source" :position="Position.Right" />
+  <Handle v-if="props.data.sourcePosition?.includes('left')" type="source" :position="Position.Left" />
   <Handle v-if="props.data.sourcePosition?.includes('bottom')" type="source" :position="Position.Bottom"/>
 
   <Handle v-if="props.data.targetPosition?.includes('right')" type="target" :position="Position.Right" />
   <Handle v-if="props.data.targetPosition?.includes('top')" type="target" :position="Position.Top" />
-  <Handle v-if="props.data.targetPosition?.includes('left')" type="target" :position="Position.Right" />
+  <Handle v-if="props.data.targetPosition?.includes('left')" type="target" :position="Position.Left" />
   <Handle v-if="props.data.targetPosition?.includes('bottom')" type="target" :position="Position.Bottom" />
 
 

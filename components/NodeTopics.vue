@@ -1,6 +1,9 @@
 <script setup>
   import { ref } from 'vue'
+  import { useVueFlow } from '@vue-flow/core'
   import Card from './Card.vue'
+
+  const { getEdges } = useVueFlow()
 
   const topics = [
     { slug: 'start', label: "Conceptos Principales / Empieza con Esto" },
@@ -8,10 +11,10 @@
     { slug: 'hard', label: "Conceptos Avanzados / Tomalos al final" },
     { slug: 'other', label: "Temas Opcionales" },
   ]
-  const topicClass = ref("")
 
-  const changeLevel = (e) => {
-    console.log(e)
+  const changeLevel = (level) => {
+    // Animate all edge where level is equal to select
+    getEdges.value.forEach(e => e.animated = e.data.level === level)
   };
 </script>
 
@@ -21,7 +24,7 @@
       <button
         v-for="topic in topics"
         :key="topic.slug"
-        @click="changeLevel"
+        @click="changeLevel(topic.slug)"
         class="text-[0.5rem] w-full py-1 flex flex-row gap-x-2 hover:cursor-pointer"
         :class="'topic-' + topic.slug"
         >

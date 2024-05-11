@@ -16,12 +16,12 @@ const information = [
 ]
 
 const introductionSection = [
-    { id: 'eintro-intro1', source: 'intro', target: 'intro1', animated: true },
-    { id: 'eintro-intro2', source: 'intro', target: 'intro2', animated: true },
-    { id: 'eintro-intro3', source: 'intro', target: 'intro3', animated: true },
-    { id: 'eintro-intro4', source: 'intro', target: 'intro4', animated: true },
+    { id: 'eintro-intro1', source: 'intro', target: 'intro1', data: { level: 'start' }},
+    { id: 'eintro-intro2', source: 'intro', target: 'intro2', data: { level: 'start' }},
+    { id: 'eintro-intro3', source: 'intro', target: 'intro3', data: { level: 'start' }},
+    { id: 'eintro-intro4', source: 'intro', target: 'intro4', data: { level: 'start' }},
 
-    { id: "intro1", type: "custom", position: { x: 500, y: 0 }, width: 145, label: "¿Que es Rust?", data: { topicLevel: 'start' } },
+    { id: "intro1", type: "custom", position: { x: 500, y: 0 }, width: 145, label: "¿Que es Rust?", data: { topicLevel: 'start', sourcePosition: ['left'] } },
     { id: "intro2", type: "custom", position: { x: 650, y: 0 }, width: 145, label: "¿Por qué Rust?", data: { topicLevel: 'start' } },
     { id: "intro3", type: "custom", position: { x: 500, y: 40 }, width: 300, label: "Stable, Beta, Nightly. ¿Que es esto?", data: { topicLevel: 'start' } },
     
@@ -40,7 +40,15 @@ const introductionSection = [
     
     ...introductionSection,
     { id: 'basico', type: 'custom', label: 'Aprende lo Básico', position: { x: 0, y: 250 }, data: { topicLevel: 'start', targetPosition: ['right'] } },
-    ])
+    { id: '1', type: 'custom', label: 'Introducción al Lenguaje', position: { x: 180, y: 50 }, data: { topicLevel: 'start' } },
+    { id: '2', type: 'custom', label: 'Node 2', position: { x: 100, y: 100 }, data: { topicLevel: 'medium' } },
+    { id: '3', type: 'custom', label: 'Node 3', position: { x: 400, y: 100 }, data: { topicLevel: 'hard' } },
+    { id: '4', type: 'custom', label: 'Node 4', position: { x: 400, y: 200 }, data: { topicLevel: 'other' } },
+    { id: 'e0-1', source: '0', target: '1', data: { level: 'start' } },
+    { id: 'e1-3', source: '1', target: '3', data: { level: 'hard' } },
+    { id: 'e1-2', source: '1', target: '2', data: { level: 'medium' } },
+    { id: 'e3-4', source: '3', target: '4', data: { level: 'other' } },
+  ])
 </script>
 
 <template>
@@ -73,13 +81,15 @@ const introductionSection = [
       <NodeTopics />
     </template>
     <template #node-links="props">
-        <NodeLinks />
-      </template>
+      <NodeLinks />
+    </template>
   </VueFlow>
 </template>
 
 <style>
   @import '@vue-flow/core/dist/style.css';
+
+  .vue-flow__edge { pointer-events: none; }
 
   /*
    * Controls
