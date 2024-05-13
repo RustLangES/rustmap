@@ -7,46 +7,37 @@
   import NodeTopics from './NodeTopics.vue'
   import TransparentCard from './NodeTransparent.vue'
 
+  const { data } = await useAsyncData('content', () => queryContent().find())
 
-const introductionSection = [
-    { id: 'eintro-intro1', source: 'intro', target: 'intro1', data: { level: 'start' }},
-    { id: 'eintro-intro3', source: 'intro', target: 'intro3', data: { level: 'start' }},
-    { id: 'eintro-intro4', source: 'intro', target: 'intro4', data: { level: 'start' }},
+  const roadmapNodes = ref([
+    { id: 'topics', type: 'topics', position: { x: 0, y: -150 }, data: { topicLevel: 'start' } },
+    ...data.value.map(({ title, _path, data: { position, width, sourcePosition, targetPosition, topicLevel, type } }) => (
+    { id: _path.substring(1).replaceAll('/', "-").replaceAll('_', ''), type, position, width, label: title, data: { topicLevel, sourcePosition, targetPosition } }
+  ))
+  ])
 
-    { id: "intro1", type: "custom", position: { x: 500, y: 0 }, width: 145, label: "¿Que es Rust?", data: { topicLevel: 'start', sourcePosition: ['left'] } },
-    { id: "intro2", type: "custom", position: { x: 650, y: 0 }, width: 145, label: "¿Por qué Rust?", data: { topicLevel: 'start' } },
-    { id: "intro3", type: "custom", position: { x: 500, y: 40 }, width: 300, label: "Stable, Beta, Nightly. ¿Que es esto?", data: { topicLevel: 'start', sourcePosition: ['left'] } },
-    
-    { id: "intro4", type: "custom", position: { x: 500, y: 100 }, width: 300, height: 200, label: "Configura tu entorno", data: { sourcePosition: ['left'], withoutIcon: true, noInteractive: true, moreTransparency: true } },
-
-    { id: "intro4-a", type: "custom", position: { x: 500, y: 150 }, width:300,label: "Instalar Rustup", data: { topicLevel: 'start' } },
-    { id: "intro4-b", type: "custom", position: { x: 500, y: 200 }, width:300,label: "Configura tu Editor de código", data: { topicLevel: 'start' } },
-    { id: "intro4-c", type: "custom", position: { x: 500, y: 250 }, width:300, label: "Ejecuta tu primer programa", data: { topicLevel: 'start' } },
-]
-
-  const elements = ref([
-    { id: '00', type: 'topics', position: { x: 0, y: -150 }, data: { topicLevel: 'start' } },
-    { id: '0', type: 'transparent', label: 'Rust', data: { topicLevel: 'none' }, position: { x: 262, y: 0 } },
-    { id: 'intro', type: 'custom', label: 'Introducción al Lenguaje', position: { x: 180, y: 50 }, data: { topicLevel: 'start', targetPosition: ['right'] } },
-    
-    
-    ...introductionSection,
-    { id: 'basico', type: 'custom', label: 'Aprende lo Básico', position: { x: 0, y: 250 }, data: { topicLevel: 'start', targetPosition: ['right'] } },
-    { id: '1', type: 'custom', label: 'Introducción al Lenguaje', position: { x: 180, y: 50 }, data: { topicLevel: 'start' } },
-    { id: '2', type: 'custom', label: 'Node 2', position: { x: 100, y: 100 }, data: { topicLevel: 'medium' } },
-    { id: '3', type: 'custom', label: 'Node 3', position: { x: 400, y: 100 }, data: { topicLevel: 'hard' } },
-    { id: '4', type: 'custom', label: 'Node 4', position: { x: 400, y: 200 }, data: { topicLevel: 'other' } },
-    { id: 'e0-1', source: '0', target: '1', data: { level: 'start' } },
-    { id: 'e1-3', source: '1', target: '3', data: { level: 'hard' } },
-    { id: 'e1-2', source: '1', target: '2', data: { level: 'medium' } },
-    { id: 'e3-4', source: '3', target: '4', data: { level: 'other' } },
+  const roadmapEdges = ref([
+    ...data.value.flatMap(({_path, data: { topicLevel, sourcePosition, targetPosition } }) => {
+    const mySlug = _path.substring(1).replaceAll('/', "-").replaceAll('_', '')
+    return [
+      ...Object.keys(sourcePosition || {}).map(k => {
+        const source = sourcePosition[k]
+        return { id: `${mySlug}-${k}`, type: 'smoothstep', source: mySlug, target: k, data: { level: topicLevel } }
+      }),
+      ...Object.keys(targetPosition || {}).map(k => {
+        const target = targetPosition[k]
+        return { id: `${k}-${mySlug}`, type: 'smoothstep', source: k, target: mySlug, data: { level: topicLevel } }
+      }),
+    ]
+    })
   ])
 </script>
 
 <template>
   <VueFlow
     fit-view-on-init
-    v-model="elements"
+    :nodes="roadmapNodes"
+    :edges="roadmapEdges"
     :apply-changes="false"
     :nodes-draggable="false"
     :edges-updatable="false"
@@ -67,7 +58,7 @@ const introductionSection = [
       <NodeCard :label="props.label" :data="props.data" />
     </template>
     <template #node-transparent="props">
-      <TransparentCard :label="props.label" />
+      <TransparentCard :label="props.label" :data="props.data" />
     </template>
     <template #node-topics="props">
       <NodeTopics />

@@ -20,29 +20,33 @@
 
   // TODO: open side content
   onNodeClick(({ node }) => {
-    if (node.type == "topics") return
+    if (node.type === "topics") return
     console.log(node)
   })
   // TODO: animate all path if have event.node.data.topicLevel.eq()
   onNodeDoubleClick(({ node }) => {
-    if (node.type == "topics") return
+    if (node.type === "topics") return
     console.log(node)
   })
 
+  const checkSourceHandle = (ty) => {
+    return Object.values(props.data.sourcePosition || {}).includes(ty)
+  }
+  const checkTargetHandle = (ty) => {
+    return Object.values(props.data.targetPosition || {}).includes(ty)
+  }
 </script>
 
 <template>
-  <Handle v-if="props.data.sourcePosition?.includes('right')" type="source" :position="Position.Right"  />
-  <Handle v-if="props.data.sourcePosition?.includes('top')" type="source" :position="Position.Top"  />
-  <Handle v-if="props.data.sourcePosition?.includes('left')" type="source" :position="Position.Left" />
-  <Handle v-if="props.data.sourcePosition?.includes('bottom')" type="source" :position="Position.Bottom"/>
+  <Handle v-if="checkSourceHandle('right')" type="source" :position="Position.Right"  />
+  <Handle v-if="checkSourceHandle('top')" type="source" :position="Position.Top"  />
+  <Handle v-if="checkSourceHandle('left')" type="source" :position="Position.Left" />
+  <Handle v-if="checkSourceHandle('bottom')" type="source" :position="Position.Bottom"/>
 
-  <Handle v-if="props.data.targetPosition?.includes('right')" type="target" :position="Position.Right" />
-  <Handle v-if="props.data.targetPosition?.includes('top')" type="target" :position="Position.Top" />
-  <Handle v-if="props.data.targetPosition?.includes('left')" type="target" :position="Position.Left" />
-  <Handle v-if="props.data.targetPosition?.includes('bottom')" type="target" :position="Position.Bottom" />
-
-
+  <Handle v-if="checkTargetHandle('right')" type="target" :position="Position.Right" />
+  <Handle v-if="checkTargetHandle('top')" type="target" :position="Position.Top" />
+  <Handle v-if="checkTargetHandle('left')" type="target" :position="Position.Left" />
+  <Handle v-if="checkTargetHandle('bottom')" type="target" :position="Position.Bottom" />
 
   {{ props.data.position }}
   <Card class="flex flex-row gap-x-2" :class="'topic-' + props.data.topicLevel" :moreTransparency="props.data.moreTransparency" :noInteractive="props.data.noInteractive">
