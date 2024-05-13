@@ -1,0 +1,12 @@
+title: 'Rust'
+description: ''
+data:
+  type: 'transparent'
+  topicLevel: 'start'
+  position:
+    x: 400
+    y: -100
+  sourcePosition:
+    none: 'top'
+  targetPosition: 
+    introduction: 'bottom'

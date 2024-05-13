@@ -1,0 +1,12 @@
+title: 'Continua Aprendiendo'
+description: ''
+data:
+  type: 'transparent'
+  topicLevel: 'other'
+  position:
+    x: 100
+    y: 2000
+  sourcePosition: 
+    ecosystem: 'top'
+  targetPosition:
+    none: 'bottom'
