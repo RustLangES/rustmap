@@ -2,6 +2,9 @@
   import Card from './Card.vue'
   import { useVueFlow } from '@vue-flow/core'
   import { Handle, Position } from '@vue-flow/core'
+
+  const ignoreTypes = ["topics", "transparent"]
+
   const props = defineProps({
     data: Object,
     withoutIcon: {
@@ -20,12 +23,12 @@
 
   // TODO: open side content
   onNodeClick(({ node }) => {
-    if (node.type === "topics") return
+    if (ignoreTypes.includes(node.type)) return
     console.log(node)
   })
   // TODO: animate all path if have event.node.data.topicLevel.eq()
   onNodeDoubleClick(({ node }) => {
-    if (node.type === "topics") return
+    if (ignoreTypes.includes(node.type)) return
     console.log(node)
   })
 
