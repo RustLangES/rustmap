@@ -12,6 +12,10 @@ data:
     rust: 'top'
   targetPosition: 
     basic: 'bottom'
+externalLinks:
+  oficial:
+    english: true
+    link: 'https://rust-lang.org'
 ---
 # Introducción al Lenguaje
 Rust es un lenguaje de programación moderno y de alto rendimiento que se enfoca en la seguridad, la concurrencia y la eficiencia. Fue creado por Mozilla Research y lanzado en 2010. Desde entonces, ha ganado popularidad debido a varias razones:
