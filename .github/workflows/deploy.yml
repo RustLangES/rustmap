@@ -15,7 +15,7 @@ on:
 
 jobs:
   check:
-    - uses: ./.github/workflows/checks.yml
+    uses: ./.github/workflows/checks.yml
 
   deploy:
     needs: [check]
