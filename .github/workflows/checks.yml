@@ -1,0 +1,20 @@
+name: Check Format and Code Quality
+on:
+  workflow_dispatch:
+  workflow_call:
+  pull_request:
+  push:
+    branches:
+      - main
+      - dev
+
+jobs:
+  checks:
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup Biome CLI
+        uses: biomejs/setup-biome@v
+      - name: checks
+        run: biome check .
