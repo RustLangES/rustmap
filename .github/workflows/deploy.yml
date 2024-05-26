@@ -7,18 +7,19 @@ on:
       - main
     paths:
       - ".github/workflows/deploy.yml"
-      - "wrangler.toml"
-      - "src/**/**.rs"
-      - "Cargo.toml"
-      - "Cargo.lock"
-      - "rust-toolchain.toml"
+      - "package.json"
+      - "tsconfig.json"
+      - "nuxt.config.ts"
+      - "tailwind.config.js"
+      - "app.vue"
+      - "components/**"
+      - "content/**"
+      - "public/**"
+      - "layouts/**"
+      - "server/**"
 
 jobs:
-  check:
-    uses: ./.github/workflows/checks.yml
-
   deploy:
-    needs: [check]
     runs-on: ubuntu-22.04
     steps:
       - name: Checkout
@@ -32,7 +33,7 @@ jobs:
 
       - name: Deploy
         uses: cloudflare/wrangler-action@v3
-        env:
+        # env:
           # YOUR_SECRET: ${{ secrets.YOUR_SECRET }}
           # YOUR_OTHER_SECRET: ${{ secrets.YOUR_OTHER_SECRET }}
         with:
