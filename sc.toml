@@ -1,0 +1,67 @@
+# this use https://github.com/romancitodev/simple-commits
+
+[git]
+skip_preview = true
+skip_emojis = true
+
+[[scopes]]
+name = "manifest"
+description = "Configuration files for the project, including Cargo.toml and related."
+
+[[scopes]]
+name = "docs"
+description = "Documentation files for the project, such as README or tutorials."
+
+[[scopes]]
+name = "nix"
+description = "Nix configuration files for reproducible builds."
+
+[[scopes]]
+name = "preview"
+description = "Preview generation logic and related configurations."
+
+# Content-related scopes
+[[scopes]]
+name = "content:introduction"
+description = "Introduction section in the project's content."
+
+[[scopes]]
+name = "content:basic"
+description = "Basic concepts and examples in the project's content."
+
+[[scopes]]
+name = "content:error-handling"
+description = "Error handling concepts in the project's content."
+
+[[scopes]]
+name = "content:cargo"
+description = "Cargo-related content in the documentation or guides."
+
+[[scopes]]
+name = "content:traits"
+description = "Content related to Rust traits and their usage."
+
+[[scopes]]
+name = "content:smart-pointers"
+description = "Documentation about Rust smart pointers and their examples."
+
+[[scopes]]
+name = "content:concurrency"
+description = "Concurrency concepts and examples in the documentation."
+
+[[scopes]]
+name = "content:interop"
+description = "Interoperability guides for Rust with other languages or tools."
+
+[[scopes]]
+name = "content:ecosystem"
+description = "Documentation about the Rust ecosystem and external crates."
+
+# UI-related scopes
+[[scopes]]
+name = "ui:components"
+description = "Reusable components in the project's user interface."
+
+[[scopes]]
+name = "ui:design"
+description = "Design-related aspects of the project's UI."
