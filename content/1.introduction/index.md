@@ -12,10 +12,10 @@ data:
     rust: 'top'
   targetPosition: 
     basic: 'bottom'
-externalLinks:
-  oficial:
-    english: true
-    link: 'https://rust-lang.org'
+  externalLinks:
+    oficial:
+      english: true
+      link: 'https://rust-lang.org'
 ---
 ## Introducción a Rust: El Lenguaje del Futuro en Programación de Sistemas
 
