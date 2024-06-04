@@ -11,14 +11,12 @@ data:
   sourcePosition:
     rust: 'top'
   targetPosition: 
+    que-es-rust: 'right'
     basic: 'bottom'
   externalLinks:
     - name: 'Web Oficial'
       english: true
       link: 'https://rust-lang.org'
-    - name: 'Un paseo por Rust'
-      english: false
-      link: 'https://blog.rustlang-es.org/articles/un-pequeno-paseo-por-rust-4lko'
     - name: 'Hicimos el sitio web de nuestra boda en Angular y Rust'
       english: false
       link: 'https://blog.rustlang-es.org/articles/hicimos-el-sitio-web-de-nuestra-boda-en-angular-y-rust-pk8'
