@@ -13,9 +13,15 @@ data:
   targetPosition: 
     basic: 'bottom'
   externalLinks:
-    oficial:
+    - name: 'Web Oficial'
       english: true
       link: 'https://rust-lang.org'
+    - name: 'Un paseo por Rust'
+      english: false
+      link: 'https://blog.rustlang-es.org/articles/un-pequeno-paseo-por-rust-4lko'
+    - name: 'Hicimos el sitio web de nuestra boda en Angular y Rust'
+      english: false
+      link: 'https://blog.rustlang-es.org/articles/hicimos-el-sitio-web-de-nuestra-boda-en-angular-y-rust-pk8'
 ---
 ## Introducción a Rust: El Lenguaje del Futuro en Programación de Sistemas
 
