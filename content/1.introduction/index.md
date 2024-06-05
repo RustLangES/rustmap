@@ -11,7 +11,7 @@ data:
   sourcePosition:
     rust: 'top'
   targetPosition: 
-    que-es-rust: 'right'
+    why-rust: 'right'
     basic: 'bottom'
   externalLinks:
     - name: 'Web Oficial'
