@@ -7,7 +7,7 @@ data:
   topicLevel: 'start'
   position:
     x: 620
-    y: 300
+    y: 140
   sourcePosition:
     introduction: 'left'
   externalLinks:

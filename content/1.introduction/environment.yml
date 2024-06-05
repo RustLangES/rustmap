@@ -1,0 +1,11 @@
+title: 'Configura tu Entorno'
+description: ''
+data:
+  type: 'transparent'
+  topicLevel: 'start'
+  position:
+    x: 620
+    y: 200
+  width: 320
+  sourcePosition:
+    introduction: 'left'

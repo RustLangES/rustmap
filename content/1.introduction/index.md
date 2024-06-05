@@ -14,6 +14,7 @@ data:
     basic: 'bottom'
     why-rust: 'right'
     rust-channels: 'right'
+    environment: 'right'
   externalLinks:
     - name: 'Web Oficial'
       english: true
