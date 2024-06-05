@@ -4,6 +4,12 @@
   import { Handle, Position } from '@vue-flow/core'
 
   const ignoreTypes = ["topics", "transparent"]
+  const positions = {
+      top: Position.Top,
+      left: Position.Left,
+      right: Position.Right,
+      bottom: Position.Bottom,
+  }
 
   const props = defineProps({
     data: Object,
@@ -32,24 +38,26 @@
     console.log(node)
   })
 
-  const checkSourceHandle = (ty) => {
-    return Object.values(props.data.sourcePosition || {}).includes(ty)
-  }
-  const checkTargetHandle = (ty) => {
-    return Object.values(props.data.targetPosition || {}).includes(ty)
+  const generateStyle = (handle, index) => {
+    return { [handle]: `${index * 10}px` }
   }
 </script>
 
 <template>
-  <Handle v-if="checkSourceHandle('right')" type="source" :position="Position.Right"  />
-  <Handle v-if="checkSourceHandle('top')" type="source" :position="Position.Top"  />
-  <Handle v-if="checkSourceHandle('left')" type="source" :position="Position.Left" />
-  <Handle v-if="checkSourceHandle('bottom')" type="source" :position="Position.Bottom"/>
-
-  <Handle v-if="checkTargetHandle('right')" type="target" :position="Position.Right" />
-  <Handle v-if="checkTargetHandle('top')" type="target" :position="Position.Top" />
-  <Handle v-if="checkTargetHandle('left')" type="target" :position="Position.Left" />
-  <Handle v-if="checkTargetHandle('bottom')" type="target" :position="Position.Bottom" />
+  <Handle
+    v-for="(handle, index) in Object.values(props.data.sourcePosition || {})"
+    :position="positions[handle]"
+    :key="`source-${index}-${handle}`"
+    :id="`source-${index}-${handle}`"
+    type="source"
+    />
+  <Handle
+    v-for="(handle, index) in Object.values(props.data.targetPosition || {})"
+    :position="positions[handle]"
+    :key="`target-${index}-${handle}`"
+    :id="`target-${index}-${handle}`"
+    type="target"
+    />
 
   {{ props.data.position }}
   <Card class="flex flex-row gap-x-2" :class="'topic-' + props.data.topicLevel" :moreTransparency="props.data.moreTransparency" :noInteractive="props.data.noInteractive">
