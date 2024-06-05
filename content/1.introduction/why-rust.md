@@ -17,6 +17,9 @@ data:
     - name: 'Un paseo por Rust'
       english: false
       link: 'https://blog.rustlang-es.org/articles/un-pequeno-paseo-por-rust-4lko'
+    - name: 'Herramientas integradas en Rust'
+      english: false
+      link: 'https://www.rust-lang.org/es/tools'
 ---
 ### ¿Por Qué Rust?
 
