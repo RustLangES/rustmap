@@ -8,6 +8,7 @@ data:
   position:
     x: 620
     y: 100
+  width: 320
   sourcePosition:
     introduction: 'left'
   externalLinks:
