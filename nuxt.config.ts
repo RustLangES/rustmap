@@ -12,6 +12,7 @@ Ya sea que desees desarrollar aplicaciones de sistemas, videojuegos, criptomoned
     defaultLocale: 'es'
   },
   ogImage: {
+    enabled: false,
     runtimeChromium: false,
   },
   app: {
