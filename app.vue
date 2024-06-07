@@ -27,7 +27,7 @@ Ya sea que desees desarrollar aplicaciones de sistemas, videojuegos, criptomoned
     twitterImage: '[twitter:image]'
   })
 
-  defineOgImageComponent('Home', { title })
+  // defineOgImageComponent('Home', { title })
 </script>
 
 <template>
