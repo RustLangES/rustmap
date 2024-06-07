@@ -1,0 +1,14 @@
+title: 'Syntax'
+description: ''
+data:
+  type: 'transparent'
+  topicLevel: 'start'
+  position:
+    x: -700
+    y: 200
+  width: 320
+  align: 'center'
+  sourcePosition:
+    none: 'top'
+  targetPosition: 
+    basic: 'right'
