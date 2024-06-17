@@ -1,0 +1,14 @@
+title: 'Ownership y Borrwing'
+description: ''
+data:
+  type: 'transparent'
+  topicLevel: 'start'
+  position:
+    x: -700
+    y: 520
+  width: 320
+  align: 'center'
+  sourcePosition:
+    none: 'top'
+  targetPosition: 
+    basic: 'right'
