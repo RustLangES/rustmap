@@ -1,0 +1,14 @@
+title: 'Tipos de Datos Primitivos'
+description: ''
+data:
+  type: 'transparent'
+  topicLevel: 'start'
+  position:
+    x: -50
+    y: 240
+  width: 320
+  align: 'left'
+  sourcePosition:
+    none: 'top'
+  targetPosition: 
+    basic: 'left'
