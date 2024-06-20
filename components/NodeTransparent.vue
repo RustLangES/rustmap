@@ -13,6 +13,8 @@
   const checkTargetHandle = (ty) => {
     return Object.values(props.data.targetPosition || {}).includes(ty)
   }
+
+  const alignmentClass = computed(() => 'text-' + (props.data.align || 'left'))
 </script>
 
 <template>
@@ -26,7 +28,7 @@
   <Handle v-if="checkTargetHandle('left')" type="target" :position="Position.Left" />
   <Handle v-if="checkTargetHandle('bottom')" type="target" :position="Position.Bottom" />
 
-  <div class="py-1 px-2">
+  <div :class="['py-1 px-2', alignmentClass]">
     {{ props.label }}
   </div>
 </template>
