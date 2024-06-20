@@ -44,10 +44,6 @@ jobs:
           submodules: "recursive"
           ref: ${{ github.event.pull_request.head.ref }}
           repository: ${{ github.event.pull_request.head.repo.full_name }}
-      - name: Declare some variables
-        shell: bash
-        run: |
-          echo "SHA_SHORT=$(git rev-parse --short "$GITHUB_SHA")" >> "$GITHUB_ENV"
 
       - name: Create comment
         id: comment
@@ -75,7 +71,12 @@ jobs:
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: pages deploy ./dist --project-name=rustmap --branch="${{ env.BRANCH_NAME }}"
+          command: pages deploy ./dist --project-name=rustmap --branch "${{ env.BRANCH_NAME }}"
+
+      - name: Extract hash from CF url Deploy
+        run: |
+          url_hash=$(echo "${{ steps.deploy.outputs.deployment-url }}" | sed -n 's|https://\([^.]*\).rustmap.*|\1|p')
+          echo "SHA_SHORT=$url_hash" >> $GITHUB_ENV
 
       - name: Create comment
         uses: peter-evans/create-or-update-comment@v4
