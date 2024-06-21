@@ -41,7 +41,10 @@
     :apply-changes="false"
     :nodes-draggable="false"
     :edges-updatable="false"
-    class="min-h-screen min-w-full"
+    :min-zoom="0.65"
+    :zoom-on-scroll="false"
+    :prevent-scrolling="false"
+    class="min-h-[220vh] min-w-full"
     >
     <MiniMap
       pannable zoomable
