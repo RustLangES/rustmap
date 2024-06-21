@@ -1,5 +1,6 @@
 <script setup>
   import Card from './Card.vue'
+  import { useRouter } from 'vue-router'
   import { useVueFlow } from '@vue-flow/core'
   import { Handle, Position } from '@vue-flow/core'
 
@@ -11,6 +12,7 @@
       bottom: Position.Bottom,
   }
 
+  const router = useRouter()
   const props = defineProps({
     data: Object,
     withoutIcon: {
@@ -30,6 +32,7 @@
   // TODO: open side content
   onNodeClick(({ node }) => {
     if (ignoreTypes.includes(node.type)) return
+    router.push({ path: `/${node.id}`, query: { fromClick: true } })
     console.log(node)
   })
   // TODO: animate all path if have event.node.data.topicLevel.eq()
