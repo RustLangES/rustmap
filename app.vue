@@ -1,7 +1,5 @@
 <script setup>
   import { useRoute } from 'vue-router'
-  import Roadmap from './components/Roadmap.vue'
-  import HeroSection from './layouts/hero.vue'
 
   const route = useRoute()
   const nodeId = route.params.slug

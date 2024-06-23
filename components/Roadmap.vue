@@ -12,7 +12,7 @@
   const roadmapNodes = ref([
     { id: 'topics', type: 'topics', position: { x: 0, y: -150 }, data: { topicLevel: 'start' } },
     ...data.value.map(({ title, _path, data: { position, width, sourcePosition, targetPosition, topicLevel, type, align } }) => (
-    { id: _path.substring(1).replaceAll('/', "-").replaceAll('_', ''), type, position, width, label: title, data: { align, topicLevel, sourcePosition, targetPosition } }
+    { id: _path.substring(1), type, position, width, label: title, data: { align, topicLevel, sourcePosition, targetPosition } }
   ))
   ])
 
