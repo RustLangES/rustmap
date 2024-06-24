@@ -29,4 +29,15 @@ Ya sea que desees desarrollar aplicaciones de sistemas, videojuegos, criptomoned
       ]
     }
   },
+  content: {
+    highlight: {
+      langs: ['c', 'cpp', 'rs', 'java', 'js', 'cs', 'asm', 'toml', 'console', 'sh', 'bash', "vim"],
+      // Themes from https://github.com/shikijs/textmate-grammars-themes/tree/main/packages/tm-themes
+      theme: {
+        default: 'vitesse-dark',
+        dark: 'vitesse-dark',
+        sepia: 'monokai'
+      }
+    },
+  },
 })
