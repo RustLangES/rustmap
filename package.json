@@ -21,6 +21,7 @@
   "devDependencies": {
     "@nuxtjs/seo": "^2.0.0-rc.10",
     "@nuxtjs/tailwindcss": "^6.12.0",
+    "@tailwindcss/typography": "^0.5.13",
     "@unocss/nuxt": "^0.60.0"
   },
   "trustedDependencies": [
