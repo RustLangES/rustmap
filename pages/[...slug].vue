@@ -52,5 +52,5 @@ onMounted(async () => {
 })
 
 const closeSidebar = () => content.value = null;
-const sidebarClass = computed(() => showSidebar ? 'right-0' : '')
+const sidebarClass = computed(() => showSidebar.value ? 'right-0' : 'w-screen')
 </script>
