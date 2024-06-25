@@ -2,12 +2,12 @@
   <Header />
   <HeroSection />
   <Roadmap />
-  <div v-if="content" :class="['fixed top-0 h-screen', sidebarClass]">
+  <Teleport to="body">
+  <div v-if="content" :class="['fixed top-0 right-0 h-screen', sidebarClass]">
     <div
-        class="top-0 flex overflow-y-auto overflow-x-none h-full w-full flex-col items-center bg-white p-4 focus:outline-0 sm:p-6"
+        class="flex overflow-y-auto overflow-x-none h-full w-full flex-col items-center bg-white p-4 focus:outline-0 sm:p-6"
     >
       <div class="w-full flex flex-row justify-between text-black px-4 pb-2">
-        <span>[TODO] Status</span>
         <span class="hover:cursor-pointer" @click="closeSidebar">X</span>
       </div>
       <ContentRenderer :key="content._id" :value="content">
@@ -31,6 +31,7 @@
       </ContentRenderer>
     </div>
   </div>
+  </Teleport>
 </template>
 
 <script setup>
@@ -38,6 +39,7 @@ import { useRoute } from 'vue-router'
 import { ref, onMounted } from 'vue'
 import Roadmap from '@/components/Roadmap.vue'
 import HeroSection from '@/layouts/hero.vue'
+// import DropDown from '@/components/dropdown/container.vue'
 
 const route = useRoute()
 const nodeId = route.params.slug
@@ -52,5 +54,5 @@ onMounted(async () => {
 })
 
 const closeSidebar = () => content.value = null;
-const sidebarClass = computed(() => showSidebar.value ? 'right-0' : 'w-screen')
+const sidebarClass = computed(() => showSidebar.value ? 'w-2/4' : 'w-screen')
 </script>

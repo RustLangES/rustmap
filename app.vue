@@ -12,7 +12,7 @@ Ya sea que desees desarrollar aplicaciones de sistemas, videojuegos, criptomoned
     `
   useHead({
     bodyAttrs: {
-      class: 'bg-orange-200 dark:bg-[#131313]/90 w-screen min-h-screen bg-center bg-fixed dark:bg-kaku dark:bg-cover dark:bg-blend-darken dark:backdrop-blur-xl overflow-x-hidden dark:text-[#e2cea9]' + ((nodeId && !route.query.fromClick) ? ' overflow-hidden' : '')
+      class: 'bg-orange-200 dark:bg-[#131313]/90 w-screen min-h-screen bg-center bg-fixed dark:bg-kaku dark:bg-cover dark:bg-blend-darken overflow-x-hidden dark:text-[#e2cea9]' + ((nodeId && !route.query.fromClick) ? ' overflow-hidden' : '')
     }
   })
 
