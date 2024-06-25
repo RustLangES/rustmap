@@ -32,7 +32,7 @@
   // TODO: open side content
   onNodeClick(({ node }) => {
     if (ignoreTypes.includes(node.type)) return
-    router.push({ path: `/${node.id}`, query: { fromClick: true } })
+    router.push({ path: node.data.path, query: { fromClick: true } })
     console.log(node)
   })
   // TODO: animate all path if have event.node.data.topicLevel.eq()
