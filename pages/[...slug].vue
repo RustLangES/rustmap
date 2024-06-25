@@ -3,15 +3,19 @@
   <HeroSection />
   <Roadmap />
   <Teleport to="body">
-  <div v-if="content" :class="['fixed top-0 right-0 h-screen', sidebarClass]">
+  <div v-if="content" :class="['fixed top-0 h-screen', sidebarClass]">
     <div
-        class="prose dark:prose-invert flex overflow-y-auto overflow-x-hidden h-full w-full flex-col items-center p-4 focus:outline-0 sm:p-6 bg-orange-50 dark:bg-gray-800"
+        class="prose dark:prose-invert max-w-full flex overflow-y-auto overflow-x-hidden h-full w-full flex-col items-center p-4 focus:outline-0 sm:p-6 bg-orange-50 dark:bg-gray-800"
     >
       <div class="w-full flex flex-row justify-between px-4 pb-2">
-        <Dropdown ref="statusDropDown" :border="false">
+        <Dropdown
+          ref="statusDropDown"
+          :customTriggerClass="['px-4 py-2 border-black border', status.toLowerCase()]"
+          :border="false"
+        >
           <!-- trigger element -->
           <template #trigger>
-            <button type="button" :class="['px-4 py-2 border-black border', status.toLowerCase()]">{{status}}</button>
+            <button type="button" v-text="status"/>
           </template>
 
           <!-- contents display in dropdown -->
@@ -81,7 +85,7 @@ const closeSidebar = () => {
   content.value = null;
   document.body.classList.remove('overflow-hidden')
 }
-const sidebarClass = computed(() => showSidebar.value ? 'w-2/4' : 'w-screen')
+const sidebarClass = computed(() => showSidebar.value ? 'right-0  w-2/4' : 'w-screen')
 
 function changeStatus(val) {
   if (val == status.value) return
@@ -105,4 +109,6 @@ function changeStatus(val) {
 .leyendo::before { color: var(--tw-text-orange-500); }
 .completado::before { color: var(--tw-text-green-600); }
 .omitir::before { color: var(--tw-text-slate-500); }
+
+.v-dropdown-container.v-dropdown-no-border { border-radius: 0px !important }
 </style>
