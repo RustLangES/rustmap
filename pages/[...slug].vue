@@ -8,6 +8,24 @@
         class="flex overflow-y-auto overflow-x-none h-full w-full flex-col items-center bg-white p-4 focus:outline-0 sm:p-6"
     >
       <div class="w-full flex flex-row justify-between text-black px-4 pb-2">
+        <Dropdown ref="statusDropDown" :border="false">
+          <!-- trigger element -->
+          <template #trigger>
+            <button type="button">{{status}}</button>
+          </template>
+
+          <!-- contents display in dropdown -->
+          <div class="rounded flex flex-col text-black">
+            <div
+              v-for="(s, i) in allStatus"
+              :key="'status-' + i"
+              @click="changeStatus(s)"
+              class="px-4 py-2 hover:cursor-pointer border-b border-black"
+              v-text="s"
+            >
+            </div>
+          </div>
+        </Dropdown>
         <span class="hover:cursor-pointer" @click="closeSidebar">X</span>
       </div>
       <ContentRenderer :key="content._id" :value="content">
@@ -34,17 +52,23 @@
   </Teleport>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { useRoute } from 'vue-router'
 import { ref, onMounted } from 'vue'
 import Roadmap from '@/components/Roadmap.vue'
 import HeroSection from '@/layouts/hero.vue'
-// import DropDown from '@/components/dropdown/container.vue'
+import Dropdown from 'v-dropdown'
 
+const { $locally } = useNuxtApp()
+
+const allStatus = [ 'Pendiente', 'Leyendo', 'Completado', 'Omitir' ]
 const route = useRoute()
 const nodeId = route.params.slug
 const showSidebar = ref(true)
 const content = ref(null)
+const statusDropDown = ref(null)
+const status = ref($locally.get(nodeId) ?? 'Pendiente')
+
 
 onMounted(async () => {
   if (!nodeId) return
@@ -58,4 +82,12 @@ const closeSidebar = () => {
   document.body.classList.remove('overflow-hidden')
 }
 const sidebarClass = computed(() => showSidebar.value ? 'w-2/4' : 'w-screen')
+
+function changeStatus(val) {
+  if (val == status.value) return
+  if (!statusDropDown.value) return
+  status.value = val
+  $locally.set(nodeId, val)
+  statusDropDown.value.close()
+}
 </script>
