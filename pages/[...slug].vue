@@ -53,6 +53,9 @@ onMounted(async () => {
   showSidebar.value = contentResult && (route.query.fromClick || false)
 })
 
-const closeSidebar = () => content.value = null;
+const closeSidebar = () => {
+  content.value = null;
+  document.body.classList.remove('overflow-hidden')
+}
 const sidebarClass = computed(() => showSidebar.value ? 'w-2/4' : 'w-screen')
 </script>
