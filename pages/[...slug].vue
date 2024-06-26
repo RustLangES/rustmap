@@ -40,7 +40,7 @@
           </h4>
           <a
             class="gap-x-2 mb-1"
-            v-for="(link, i) in content.data.externalLinks"
+            v-for="(link, i) in content.data.externalLinks.sort((a, b) => a.english - b.english)"
             :key="i"
             :href="link.link"
             >
