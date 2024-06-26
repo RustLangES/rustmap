@@ -12,7 +12,7 @@
   const roadmapNodes = ref([
     { id: 'topics', type: 'topics', position: { x: 0, y: -150 }, data: { topicLevel: 'start' } },
     ...data.value.map(({ title, _path, data: { position, width, sourcePosition, targetPosition, topicLevel, type, align } }) => (
-    { id: _path.substring(1).replaceAll('/', "-").replaceAll('_', ''), type, position, width, label: title, data: { align, topicLevel, sourcePosition, targetPosition } }
+    { id: _path.substring(1).replaceAll('/', "-").replaceAll('_', ''), type, position, width, label: title, data: { align, topicLevel, sourcePosition, targetPosition, path: _path } }
   ))
   ])
 
@@ -41,7 +41,10 @@
     :apply-changes="false"
     :nodes-draggable="false"
     :edges-updatable="false"
-    class="min-h-screen min-w-full"
+    :min-zoom="0.65"
+    :zoom-on-scroll="false"
+    :prevent-scrolling="false"
+    class="min-h-[220vh] min-w-full"
     >
     <MiniMap
       pannable zoomable
