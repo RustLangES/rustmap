@@ -85,7 +85,7 @@ const closeSidebar = () => {
   content.value = null;
   document.body.classList.remove('overflow-hidden')
 }
-const sidebarClass = computed(() => showSidebar.value ? 'right-0  w-2/4' : 'w-screen')
+const sidebarClass = computed(() => showSidebar.value ? 'right-0 w-screen lg:w-2/4' : 'w-screen')
 
 function changeStatus(val) {
   if (val == status.value) return
