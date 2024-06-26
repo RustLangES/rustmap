@@ -14,13 +14,13 @@
             'sticky border-b -top-6 bg-orange-50 dark:bg-gray-800 w-full flex flex-row items-center justify-between px-4',
             !isScrolled
               ? '!border-transparent pb-2'
-              : 'border-white dark:border-gray-700 mb-2 py-2',
+              : 'border-gray-300 dark:border-gray-700 mb-2 py-2',
           ]"
         >
           <Dropdown
             ref="statusDropDown"
             :customTriggerClass="[
-              'px-3 py-1 hover:bg-gray-700 border-gray-700 border',
+              'px-3 py-1 hover:bg-orange-100 dark:hover:bg-gray-700 dark:border-gray-700 border',
               status.toLowerCase(),
             ]"
             :border="false"
@@ -37,7 +37,7 @@
                 :key="'status-' + i"
                 @click="changeStatus(s)"
                 :class="[
-                  'px-4 py-2 hover:cursor-pointer border-b border-gray-500 hover:bg-orange-50 dark:hover:bg-gray-500',
+                  'px-4 py-2 hover:cursor-pointer border-b border-orange-200 dark:border-gray-500 hover:bg-orange-50 dark:hover:bg-gray-500',
                   s.toLowerCase(),
                 ]"
                 v-text="s"
@@ -82,7 +82,10 @@
               :href="link.link"
               target="_blank"
             >
-              <Card moreTransparency>
+              <Card
+                moreTransparency
+                class="border-gray-300 hover:text-gray-100 transition-colors dark:border-gray-700 dark:hover:bg-gray-600 dark:bg-transparent"
+              >
                 <strong v-if="link.english">[Contenido en Ingles]</strong>
                 {{ link.name }}
               </Card>
