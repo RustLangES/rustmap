@@ -6,21 +6,21 @@
     <div v-if="content" :class="['fixed top-0 h-screen', sidebarClass]">
       <div
         id="sidebar"
-        class="scroll-smooth prose dark:prose-invert max-w-full flex overflow-y-auto overflow-x-hidden h-full w-full flex-col items-center p-4 focus:outline-0 sm:p-6 bg-orange-50 dark:bg-gray-800"
+        class="scroll-smooth prose dark:prose-invert max-w-full flex overflow-y-auto overflow-x-hidden h-full w-full flex-col items-center p-4 focus:outline-0 sm:p-6 bg-orange-50 dark:bg-[#131313]/90 border-l-2 dark:backdrop-blur-xl border-black dark:border-0"
         @scroll="onScroll"
       >
         <div
           :class="[
-            'sticky border-b -top-6 bg-orange-50 dark:bg-gray-800 w-full flex flex-row items-center justify-between px-4',
+            'sticky border-b -top-6 bg-orange-50 dark:bg-[#131313]/90 w-full flex flex-row items-center justify-between px-4',
             !isScrolled
               ? '!border-transparent pb-2'
-              : 'border-gray-300 dark:border-gray-700 mb-2 py-2',
+              : 'border-gray-300 dark:border-white mb-2 py-2  dark:backdrop-blur-2xl',
           ]"
         >
           <Dropdown
             ref="statusDropDown"
             :customTriggerClass="[
-              'px-3 py-1 hover:bg-orange-100 dark:hover:bg-gray-700 dark:border-gray-700 border',
+              'px-3 py-1 hover:bg-orange-100 dark:hover:bg-black dark:border-white border',
               status.toLowerCase(),
             ]"
             :border="false"
@@ -31,13 +31,13 @@
             </template>
 
             <!-- contents display in dropdown -->
-            <ul class="flex flex-col bg-orange-100 dark:bg-gray-600">
+            <ul class="flex flex-col bg-orange-100 dark:bg-[#131313]">
               <li
                 v-for="(s, i) in allStatus"
                 :key="'status-' + i"
                 @click="changeStatus(s)"
                 :class="[
-                  'px-4 py-2 hover:cursor-pointer border-b border-orange-200 dark:border-gray-500 hover:bg-orange-50 dark:hover:bg-gray-500',
+                  'px-4 py-2 hover:cursor-pointer border-b border-orange-200 dark:border-gray-500 hover:bg-orange-50 dark:hover:bg-black',
                   s.toLowerCase(),
                 ]"
                 v-text="s"
@@ -84,7 +84,7 @@
             >
               <Card
                 moreTransparency
-                class="border-gray-300 hover:text-gray-100 transition-colors dark:border-gray-700 dark:hover:bg-gray-600 dark:bg-transparent"
+                class="border-gray-300 hover:text-gray-100 transition-colors dark:border-white dark:hover:bg-black dark:bg-transparent"
               >
                 <strong v-if="link.english">[Contenido en Ingles]</strong>
                 {{ link.name }}
