@@ -4,6 +4,7 @@ version.workspace = true
 edition.workspace = true
 
 [dependencies]
+walkdir = "2"
 imageproc = "0.25"
 rusttype = "0.9"
 image = { version = "0.25", default-features = false, features = ["png"] }
