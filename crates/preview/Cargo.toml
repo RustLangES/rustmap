@@ -1,0 +1,11 @@
+[package]
+name = "preview"
+version.workspace = true
+edition.workspace = true
+
+[dependencies]
+imageproc = "0.25"
+rusttype = "0.9"
+image = { version = "0.25", default-features = false, features = ["png"] }
+serde = { version = "1", default-features = false, features = ["derive"] }
+gray_matter = { version = "0.2", default-features = false, features = ["yaml"] }
