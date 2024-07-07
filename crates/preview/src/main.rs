@@ -1,12 +1,15 @@
 use gray_matter::engine::YAML;
 use gray_matter::Matter;
 
+use crate::img::generate_preview;
+
+mod img;
 mod mdx;
 
 fn main() {
     let mut args = std::env::args().skip(1);
 
-    let _out = args
+    let out = args
         .next()
         .expect("The first argument must be the output directory");
 
@@ -26,4 +29,10 @@ fn main() {
     };
 
     let matter = Matter::<YAML>::new();
+
+    std::fs::create_dir_all(&out).unwrap();
+
+    files
+        .iter()
+        .for_each(|f| generate_preview(mdx::from_file(f.as_str(), &matter), &out))
 }
