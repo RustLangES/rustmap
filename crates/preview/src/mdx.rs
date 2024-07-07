@@ -33,10 +33,13 @@ pub fn from_file(path: &str, matter: &Matter<YAML>) -> FrontMatter {
     FrontMatter {
         name: path
             .replace("./", "")
+            .replace(".md", "")
             .split('/')
             .map(|p| p.split('.').skip(1).collect::<String>())
             .collect::<Vec<String>>()
-            .join("-"),
+            .join("-")
+            .trim_matches('-')
+            .to_string(),
         ..raw
     }
 }

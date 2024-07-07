@@ -24,13 +24,24 @@ fn main() {
         walkdir::WalkDir::new(&dir)
             .sort_by_file_name()
             .into_iter()
-            .flat_map(|d| d.map(|d| d.path().to_str().unwrap().to_string()).ok())
+            .flat_map(|d| {
+                let Ok(d) = d else {
+                    return None;
+                };
+                if d.file_type().is_file() && d.path().extension().is_some_and(|e| e != "yml") {
+                    return d.path().to_str().map(|d| d.to_string());
+                }
+                None
+            })
             .collect()
     };
 
     let matter = Matter::<YAML>::new();
 
-    std::fs::create_dir_all(&out).unwrap();
+    if std::fs::metadata(&out).is_err() {
+        println!("Creating directory");
+        std::fs::create_dir_all(&out).unwrap();
+    }
 
     files
         .iter()
