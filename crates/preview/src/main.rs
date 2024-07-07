@@ -1,3 +1,8 @@
+use gray_matter::engine::YAML;
+use gray_matter::Matter;
+
+mod mdx;
+
 fn main() {
     let mut args = std::env::args().skip(1);
 
@@ -19,4 +24,6 @@ fn main() {
             .flat_map(|d| d.map(|d| d.path().to_str().unwrap().to_string()).ok())
             .collect()
     };
+
+    let matter = Matter::<YAML>::new();
 }
