@@ -19,10 +19,8 @@
         >
           <Dropdown
             ref="statusDropDown"
-            :customTriggerClass="[
-              'px-3 py-1 hover:bg-orange-100 dark:hover:bg-gray-700 dark:border-gray-700 border',
-              status.toLowerCase(),
-            ]"
+            :customTriggerClass="
+              'px-3 py-1 hover:bg-orange-100 dark:hover:bg-gray-700 dark:border-gray-700 border ' + status.toLowerCase()"
             :border="false"
           >
             <!-- trigger element -->
@@ -118,10 +116,21 @@ const isScrolled = ref(false);
 
 onMounted(async () => {
   if (!nodeId) return;
-  const contentResult = await queryContent(nodeId.join("/")).findOne();
+  const contentResult = await queryContent((nodeId || []).join("/")).findOne();
   content.value = contentResult;
   showSidebar.value = contentResult && (route.query.fromClick || false);
+
+  useContentHead(contentResult)
+
 });
+
+useSeoMeta({
+  twitterCard: 'summary_large_image',
+  icon: '/favicon.ico',
+  lang: 'es',
+  ogImage: `/${(nodeId && nodeId.join('-')) || 'ogpreview'}.png`,
+  twitterImage: `/${(nodeId && nodeId.join('-')) || 'ogpreview'}.png`,
+})
 
 const closeSidebar = () => {
   content.value = null;
