@@ -128,8 +128,8 @@ useSeoMeta({
   twitterCard: 'summary_large_image',
   icon: '/favicon.ico',
   lang: 'es',
-  ogImage: `/${(nodeId && nodeId.join('-')) || 'ogpreview'}.png`,
-  twitterImage: `/${(nodeId && nodeId.join('-')) || 'ogpreview'}.png`,
+  ogImage: `/previews/${(nodeId && nodeId.join('-')) || 'ogpreview'}.png`,
+  twitterImage: `/previews/${(nodeId && nodeId.join('-')) || 'ogpreview'}.png`,
 })
 
 const closeSidebar = () => {
