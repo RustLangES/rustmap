@@ -23,7 +23,7 @@ fn main() {
         .next()
         .expect("The seconds argument must be the output directory");
 
-    let files = if args.len() > 2 {
+    let files = if args.len() > 1 {
         args.collect::<Vec<String>>()
     } else {
         let dir = args.next().expect(
