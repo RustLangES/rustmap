@@ -6,7 +6,7 @@ edition.workspace = true
 [dependencies]
 walkdir = "2"
 imageproc = "0.25"
-rusttype = "0.9"
+ab_glyph = "0.2.28"
 image = { version = "0.25", default-features = false, features = ["png"] }
 serde = { version = "1", default-features = false, features = ["derive"] }
 gray_matter = { version = "0.2", default-features = false, features = ["yaml"] }

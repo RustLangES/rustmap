@@ -1,3 +1,4 @@
+use ab_glyph::FontRef;
 use gray_matter::engine::YAML;
 use gray_matter::Matter;
 
@@ -5,6 +6,11 @@ use crate::img::generate_preview;
 
 mod img;
 mod mdx;
+
+const BG_IMAGE: &[u8] = include_bytes!("../assets/bg_preview.png");
+
+const BOLD_FONT: &[u8] = include_bytes!("../assets/WorkSans-Bold.ttf");
+const REGULAR_FONT: &[u8] = include_bytes!("../assets/WorkSans-Regular.ttf");
 
 fn main() {
     let mut args = std::env::args().skip(1);
@@ -43,7 +49,17 @@ fn main() {
         std::fs::create_dir_all(&out).unwrap();
     }
 
-    files
-        .iter()
-        .for_each(|f| generate_preview(mdx::from_file(f.as_str(), &matter), &out))
+    let bold_font = FontRef::try_from_slice(BOLD_FONT).unwrap();
+    let regular_font = FontRef::try_from_slice(REGULAR_FONT).unwrap();
+    let bg = image::RgbaImage::from_raw(1200, 630, BG_IMAGE.to_vec()).unwrap();
+
+    files.iter().for_each(|f| {
+        generate_preview(
+            &bg,
+            &bold_font,
+            &regular_font,
+            &out,
+            mdx::from_file(f.as_str(), &matter),
+        )
+    })
 }

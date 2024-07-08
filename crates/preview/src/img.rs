@@ -1,7 +1,24 @@
+use ab_glyph::FontRef;
+use image::{Rgba, RgbaImage};
+
 use crate::mdx::FrontMatter;
 
-pub fn generate_preview(matter: FrontMatter, out: &str) {
-    let _title = matter.title();
-    let _description = matter.description();
-    let _name = matter.name();
+const BLACK: Rgba<u8> = Rgba([0, 0, 0, 0]);
+
+pub fn generate_preview(
+    bg: &RgbaImage,
+    bold_font: &FontRef,
+    regular_font: &FontRef,
+    out: &str,
+    matter: FrontMatter,
+) {
+    let title = matter.title();
+    let description = matter.description();
+    let name = matter.name();
+
+    let img = imageproc::drawing::draw_text(bg, BLACK, 24, 171, 42., bold_font, title);
+    let img = imageproc::drawing::draw_text(&img, BLACK, 56, 317, 34., regular_font, description);
+
+    img.save_with_format(format!("{out}/{name}.png"), image::ImageFormat::Png)
+        .unwrap();
 }
