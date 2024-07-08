@@ -6,7 +6,7 @@ use image::{Rgba, RgbaImage};
 use crate::mdx::FrontMatter;
 use crate::render_time;
 
-const BLACK: Rgba<u8> = Rgba([0, 0, 0, 0]);
+const BLACK: Rgba<u8> = Rgba([0, 0, 0, 255]);
 
 pub fn generate_preview(
     bg: &RgbaImage,
