@@ -26,6 +26,8 @@
           packages = with pkgs; [
             toolchain
             pkg-config
+            cargo-dist
+            git-cliff
           ];
         };
       }

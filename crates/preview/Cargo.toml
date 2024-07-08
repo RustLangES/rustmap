@@ -2,6 +2,7 @@
 name = "preview"
 version.workspace = true
 edition.workspace = true
+repository.workspace = true
 
 [dependencies]
 walkdir = "2"
