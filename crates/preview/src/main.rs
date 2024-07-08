@@ -7,23 +7,25 @@ use crate::img::generate_preview;
 mod img;
 mod mdx;
 
-const BG_IMAGE: &[u8] = include_bytes!("../assets/bg_preview.png");
-
 const BOLD_FONT: &[u8] = include_bytes!("../assets/WorkSans-Bold.ttf");
 const REGULAR_FONT: &[u8] = include_bytes!("../assets/WorkSans-Regular.ttf");
 
 fn main() {
     let mut args = std::env::args().skip(1);
 
+    let bg = args
+        .next()
+        .expect("The first argument must be the background preset file");
+
     let out = args
         .next()
-        .expect("The first argument must be the output directory");
+        .expect("The seconds argument must be the output directory");
 
-    let files = if args.len() > 1 {
+    let files = if args.len() > 2 {
         args.collect::<Vec<String>>()
     } else {
         let dir = args.next().expect(
-            "The second argument must be the directory with the content or files to be processed",
+            "The third argument must be the directory with the content or files to be processed",
         );
 
         // get all files recursively on dir
@@ -51,7 +53,7 @@ fn main() {
 
     let bold_font = FontRef::try_from_slice(BOLD_FONT).unwrap();
     let regular_font = FontRef::try_from_slice(REGULAR_FONT).unwrap();
-    let bg = image::RgbaImage::from_raw(1200, 630, BG_IMAGE.to_vec()).unwrap();
+    let bg = image::open(bg).unwrap().into_rgba8();
 
     files.iter().for_each(|f| {
         generate_preview(

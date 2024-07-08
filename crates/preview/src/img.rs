@@ -19,6 +19,8 @@ pub fn generate_preview(
     let img = imageproc::drawing::draw_text(bg, BLACK, 24, 171, 42., bold_font, title);
     let img = imageproc::drawing::draw_text(&img, BLACK, 56, 317, 34., regular_font, description);
 
-    img.save_with_format(format!("{out}/{name}.png"), image::ImageFormat::Png)
-        .unwrap();
+    let out = format!("{out}/{name}.png");
+    img.save_with_format(&out, image::ImageFormat::Png).unwrap();
+
+    println!("Success: {name} at {out}");
 }
