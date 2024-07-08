@@ -1,7 +1,10 @@
+use std::time::Instant;
+
 use ab_glyph::FontRef;
 use image::{Rgba, RgbaImage};
 
 use crate::mdx::FrontMatter;
+use crate::render_time;
 
 const BLACK: Rgba<u8> = Rgba([0, 0, 0, 0]);
 
@@ -12,6 +15,7 @@ pub fn generate_preview(
     out: &str,
     matter: FrontMatter,
 ) {
+    let time = Instant::now();
     let title = matter.title();
     let description = matter.description();
     let name = matter.name();
@@ -22,5 +26,8 @@ pub fn generate_preview(
     let out = format!("{out}/{name}.png");
     img.save_with_format(&out, image::ImageFormat::Png).unwrap();
 
-    println!("Success: {name} at {out}");
+    println!(
+        "Success ({time}): {name} at {out}",
+        time = render_time(time)
+    );
 }

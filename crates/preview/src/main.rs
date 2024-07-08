@@ -1,3 +1,5 @@
+use std::time::Instant;
+
 use ab_glyph::FontRef;
 use gray_matter::engine::YAML;
 use gray_matter::Matter;
@@ -64,4 +66,13 @@ fn main() {
             mdx::from_file(f.as_str(), &matter),
         )
     })
+}
+
+pub fn render_time(time: Instant) -> String {
+    let duration = time.elapsed();
+    let seconds = duration.as_secs();
+    let milliseconds = duration.subsec_millis();
+    let nanoseconds = duration.subsec_nanos();
+
+    format!("{seconds}s {milliseconds}ms {nanoseconds}ns")
 }
