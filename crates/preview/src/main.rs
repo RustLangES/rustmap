@@ -1,4 +1,4 @@
-use std::time::Instant;
+use std::time::Duration;
 
 use ab_glyph::FontRef;
 use gray_matter::engine::YAML;
@@ -57,19 +57,43 @@ fn main() {
     let regular_font = FontRef::try_from_slice(REGULAR_FONT).unwrap();
     let bg = image::open(bg).unwrap().into_rgba8();
 
-    files.iter().for_each(|f| {
-        generate_preview(
-            &bg,
-            &bold_font,
-            &regular_font,
-            &out,
-            mdx::from_file(f.as_str(), &matter),
+    let res = files
+        .iter()
+        .map(|f| {
+            generate_preview(
+                &bg,
+                &bold_font,
+                &regular_font,
+                &out,
+                mdx::from_file(f.as_str(), &matter),
+            )
+        })
+        .collect::<Vec<_>>();
+
+    println!("\nTotal Image Processed: {c}", c = res.len());
+    println!("Total: {time}", time = render_time(res.iter().sum()));
+    println!(
+        "Max: {time}",
+        time = render_time(res.clone().into_iter().max().unwrap())
+    );
+    println!(
+        "Min: {time}",
+        time = render_time(res.clone().into_iter().min().unwrap())
+    );
+    println!(
+        "Avg: {time}",
+        time = render_time(
+            res.iter()
+                .map(Duration::as_nanos)
+                .reduce(|acc, x| acc + x)
+                .map(|total| total / res.len() as u128)
+                .map(|avg| Duration::from_nanos(avg as u64))
+                .unwrap()
         )
-    })
+    );
 }
 
-pub fn render_time(time: Instant) -> String {
-    let duration = time.elapsed();
+pub fn render_time(duration: Duration) -> String {
     let seconds = duration.as_secs();
     let milliseconds = duration.subsec_millis();
     let nanoseconds = duration.subsec_nanos();

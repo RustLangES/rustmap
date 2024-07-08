@@ -1,4 +1,4 @@
-use std::time::Instant;
+use std::time::{Duration, Instant};
 
 use ab_glyph::FontRef;
 use image::{Rgba, RgbaImage};
@@ -14,7 +14,7 @@ pub fn generate_preview(
     regular_font: &FontRef,
     out: &str,
     matter: FrontMatter,
-) {
+) -> Duration {
     let time = Instant::now();
     let title = matter.title();
     let title = title
@@ -49,10 +49,10 @@ pub fn generate_preview(
     let out = format!("{out}/{name}.png");
     img.save_with_format(&out, image::ImageFormat::Png).unwrap();
 
-    println!(
-        "Success ({time}): {name} at {out}",
-        time = render_time(time)
-    );
+    let time = time.elapsed();
+
+    println!("Success ({t}): {name} at {out}", t = render_time(time));
+    time
 }
 
 pub fn chunked_string(s: &str, line_width: usize, max_lines: usize) -> Vec<String> {
