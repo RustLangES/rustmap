@@ -1,0 +1,78 @@
+---
+# Options
+---
+
+## Introducción
+En Rust, el tipo Option es una característica clave para el manejo seguro de valores que pueden o no estar presentes. 
+Option evita errores comunes como los de referencias nulas, proporcionando una alternativa robusta y segura para 
+representar valores opcionales. En este artículo, exploraremos el uso y las ventajas del tipo Option en Rust.
+
+## Concepto de Option en Rust
+'Option' es una enumeración que puede contener un valor (Some(T)) o no (None). Este enfoque asegura que el programador maneje 
+explícitamente los casos donde un valor puede estar ausente, mejorando así la seguridad y la robustez del código.
+
+enum Option<T> {
+    Some(T),
+    None,
+}
+
+El propósito principal de Option es evitar el uso de valores nulos, que pueden llevar a errores difíciles de rastrear como los 
+famosos errores de referencia nula (null pointer exceptions). Con Option, Rust fuerza a los programadores a manejar los casos en los 
+que un valor podría estar ausente, asegurando así una gestión de recursos más segura.
+
+## Ejemplos de Uso de Option
+
+'Option' es útil en varias situaciones, como:
+
+  1. Operaciones de Búsqueda: Cuando se busca un elemento en una colección y puede no estar presente.
+
+fn find_index(arr: &[i32], target: i32) -> Option<usize> {
+    for (index, &item) in arr.iter().enumerate() {
+        if item == target {
+            return Some(index);
+        }
+    }
+    None
+}
+
+  2.Acceso a Elementos en Estructuras de Datos: Cuando se accede a elementos que pueden no existir.
+
+let arr = [1, 2, 3, 4, 5];
+let element = arr.get(2); // Devuelve Option<&i32>
+match element {
+    Some(value) => println!("Elemento en el índice 2: {}", value),
+    None => println!("No hay elemento en el índice 2"),
+}
+
+  3.Operaciones que Pueden Fallar: Cuando una operación puede no tener un resultado válido.
+
+fn divide(a: f64, b: f64) -> Option<f64> {
+    if b == 0.0 {
+        None
+    } else {
+        Some(a / b)
+    }
+}
+
+## Beneficios de Option
+
+  1.Seguridad en Tiempo de Compilación: Al forzar el manejo explícito de valores opcionales, Option previene errores comunes como 
+    los null pointer exceptions, mejorando así la seguridad del código.
+  2.Manejo Explícito de Casos de Ausencia: Option hace que los desarrolladores consideren y manejen explícitamente los casos donde un 
+    valor puede no estar presente, lo que resulta en un código más robusto.
+  3.Compatibilidad con Funciones de Alto Nivel: Option se integra bien con funciones de alto nivel y características funcionales como 
+    map, and_then, unwrap_or, etc., permitiendo transformaciones y manejos eficientes de valores opcionales.
+
+## Conclusión
+El tipo Option en Rust es una herramienta poderosa para el manejo seguro de valores opcionales. Al eliminar la posibilidad de referencias
+nulas y forzar a los desarrolladores a manejar explícitamente los casos de ausencia de valores, Option contribuye significativamente a 
+la robustez y seguridad del código en Rust. Su uso extensivo en situaciones donde los valores pueden estar presentes o no, junto con sus 
+métodos y transformaciones funcionales, hacen de Option una parte esencial del ecosistema de Rust.
+
+
+
+
+
+
+
+
