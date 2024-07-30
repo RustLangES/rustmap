@@ -1,0 +1,117 @@
+---
+title: 'Options'
+description: 'Option es una enumeración en Rust que se utiliza para representar valores que pueden o no estar presentes'
+draft: true
+data:
+  type: 'custom'
+  topicLevel: 'start'
+  position:
+    x: -700
+    y: 320
+  width: 320
+  externalLinks:
+    - name: 'Libro Oficial'
+      english: false
+      link: 'https://book.rustlang-es.org/ch03-01-variables-and-mutability#shadowing'
+    - name: 'Comprehensive Rust'
+      english: false
+      link: 'https://google.github.io/comprehensive-rust/es/control-flow-basics/blocks-and-scopes.html?highlight=shado#%C3%81mbitos-y--shadowing'
+---
+# Option en Rust: Manejo Seguro de Valores Opcionales
+
+## Introducción
+En Rust, el tipo Option es una característica clave para el manejo seguro de valores que pueden o no estar presentes. Option evita errores 
+comunes como los de referencias nulas, proporcionando una alternativa robusta y segura para representar valores opcionales. En este 
+artículo, exploraremos el uso y las ventajas del tipo Option en Rust.
+
+### Concepto de Option en Rust
+Option es una enumeración que puede contener un valor (Some(T)) o no (None). Este enfoque asegura que el programador maneje explícitamente 
+los casos donde un valor puede estar ausente, mejorando así la seguridad y la robustez del código.
+
+```rust
+enum Option<T> {
+    Some(T),
+    None,
+}
+```
+### Definición y Uso Básico
+
+Option se define en la biblioteca estándar de Rust y se usa comúnmente en situaciones donde un valor puede o no estar presente. 
+Aquí tienes un ejemplo básico:
+
+```rust
+fn find_index(arr: &[i32], target: i32) -> Option<usize> {
+    for (index, &item) in arr.iter().enumerate() {
+        if item == target {
+            return Some(index);
+        }
+    }
+    None
+}
+```
+En este ejemplo, la función find_index devuelve Some(index) si encuentra el target en el arreglo, y None si no lo encuentra.
+
+## Ejemplos de Uso de Option
+
+### Acceso Seguro a Elementos
+Al acceder a elementos en estructuras de datos, Option asegura que manejemos adecuadamente los casos donde los elementos pueden no 
+existir.
+
+```rust
+let arr = [1, 2, 3, 4, 5];
+let element = arr.get(2); // Devuelve Option<&i32>
+
+match element {
+    Some(value) => println!("Elemento en el índice 2: {}", value),
+    None => println!("No hay elemento en el índice 2"),
+}
+```
+
+### Operaciones que Pueden Fallar
+Option se usa en funciones donde una operación puede no tener un resultado válido.
+
+```rust
+fn divide(a: f64, b: f64) -> Option<f64> {
+    if b == 0.0 {
+        None
+    } else {
+        Some(a / b)
+    }
+}
+```
+
+### Uso de Métodos de Option
+Rust proporciona métodos útiles para trabajar con Option, como map, and_then, unwrap_or, entre otros.
+
+```rust
+let some_number = Some(10);
+
+let new_number = some_number.map(|x| x + 1);
+
+assert_eq!(new_number, Some(11));
+```
+
+## Beneficios de Option
+1.**Seguridad en Tiempo de Compilación:**Option hace que los desarrolladores consideren y manejen explícitamente los casos donde un valor
+puede no estar presente, lo que resulta en un código más robusto.
+2.**Manejo Explícito de Casos de Ausencia:**Option hace que los desarrolladores consideren y manejen explícitamente los casos donde un 
+valor puede no estar presente, lo que resulta en un código más robusto.
+3.**Compatibilidad con Funciones de Alto Nivel:**Option se integra bien con funciones de alto nivel y características funcionales como 
+map, and_then, unwrap_or, etc., permitiendo transformaciones y manejos eficientes de valores opcionales.
+
+## Conclusión
+El tipo Option en Rust es una herramienta poderosa para el manejo seguro de valores opcionales. Al eliminar la posibilidad de referencias nulas
+y forzar a los desarrolladores a manejar explícitamente los casos de ausencia de valores, Option contribuye significativamente a la 
+robustez y seguridad del código en Rust. Su uso extensivo en situaciones donde los valores pueden estar presentes o no, junto con sus 
+métodos y transformaciones funcionales, hacen de Option una parte esencial del ecosistema de Rust.
+
+
+
+
+
+
+
+
+
+
+
