@@ -13,7 +13,7 @@
 #
 #################### 🚧 WARNING: READ THIS BEFORE USING THIS FILE 🚧 ####################
 
-name: Docs - Preview Deployment
+name: Preview Deployment
 on:
   pull_request_target:
     types:
