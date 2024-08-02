@@ -114,16 +114,6 @@ const statusDropDown = ref(null);
 const status = ref($locally.get(nodeId) ?? "Pendiente");
 const isScrolled = ref(false);
 
-onMounted(async () => {
-  if (!nodeId) return;
-  const contentResult = await queryContent((nodeId || []).join("/")).findOne();
-  content.value = contentResult;
-  showSidebar.value = contentResult && (route.query.fromClick || false);
-
-  useContentHead(contentResult)
-
-});
-
 useSeoMeta({
   twitterCard: 'summary_large_image',
   icon: '/favicon.ico',
@@ -131,6 +121,13 @@ useSeoMeta({
   ogImage: `/previews/${(nodeId && nodeId.join('-')) || 'ogpreview'}.png`,
   twitterImage: `/previews/${(nodeId && nodeId.join('-')) || 'ogpreview'}.png`,
 })
+
+onMounted(async () => {
+  if (!nodeId) return;
+  const contentResult = await queryContent((nodeId || []).join("/")).findOne();
+  content.value = contentResult;
+  showSidebar.value = contentResult && (route.query.fromClick || false);
+});
 
 const closeSidebar = () => {
   content.value = null;

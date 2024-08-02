@@ -1,6 +1,5 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  ssr: false,
   devtools: { enabled: true },
   modules: ["@nuxt/content", "@nuxtjs/tailwindcss", "@nuxtjs/seo"],
   site: {
@@ -10,6 +9,12 @@ export default defineNuxtConfig({
     defaultLocale: 'es'
   },
   ogImage: { enabled: false },
+  nitro: {
+    prerender: {
+      crawlLinks: true,
+      routes: ['/sitemap.xml']
+    }
+  },
   app: {
     head: {
       charset: 'utf-8',
