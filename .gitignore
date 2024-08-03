@@ -1,4 +1,5 @@
 # Nuxt dev/build outputs
+.wrangler
 .output
 .data
 .nuxt
@@ -22,3 +23,8 @@ logs
 .env
 .env.*
 !.env.example
+
+
+# Added by cargo
+
+/target

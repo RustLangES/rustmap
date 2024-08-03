@@ -1,0 +1,5 @@
+allow-branch = ["main", "dev", "!HEAD"]
+publish = false
+pre-release-commit-message = "release: preview version {{version}}"
+tag-prefix = "gen_preview/"
+tag-name = "v{{version}}"

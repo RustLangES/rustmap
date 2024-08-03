@@ -13,7 +13,7 @@
 #
 #################### 🚧 WARNING: READ THIS BEFORE USING THIS FILE 🚧 ####################
 
-name: Docs - Preview Deployment
+name: Preview Deployment
 on:
   pull_request_target:
     types:
@@ -62,7 +62,7 @@ jobs:
       - name: Install Deps
         run: bun install
       - name: Build
-        run: bun run build --preset=cloudflare_pages
+        run: bun run build --preset=cloudflare
 
       # Deploy steps
       - name: Deploy
