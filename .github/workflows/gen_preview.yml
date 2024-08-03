@@ -25,7 +25,8 @@ jobs:
           persist-credentials: false # otherwise, the token used is the GITHUB_TOKEN, instead of your personal access token.
           fetch-depth: 0 # otherwise, there would be errors pushing refs to the destination repository.
       # Download bin of gen_preview
-      # TODO
+      - name: Install preview bin
+        run: curl --proto '=https' --tlsv1.2 -LsSf https://github.com/RustLangES/rustmap/releases/download/v0.2.0/preview-installer.sh | sh
 
       - name: Get changed files
         run: |
