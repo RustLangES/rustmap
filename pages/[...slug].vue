@@ -1,7 +1,9 @@
 <template>
   <Header />
   <HeroSection />
-  <Roadmap />
+  <client-only>
+    <Roadmap />
+  </client-only>
   <Teleport to="body">
     <div v-if="content" :class="['fixed top-0 h-screen', sidebarClass]">
       <div
@@ -17,31 +19,9 @@
               : 'border-gray-300 dark:border-white mb-2 py-2  dark:backdrop-blur-2xl',
           ]"
         >
-          <Dropdown
-            ref="statusDropDown"
-            :customTriggerClass="
-              'px-3 py-1 hover:bg-orange-100 dark:hover:bg-black dark:border-white border' + status.toLowerCase()"
-            :border="false"
-          >
-            <!-- trigger element -->
-            <template #trigger>
-              <button type="button" v-text="status" />
-            </template>
-
-            <!-- contents display in dropdown -->
-            <ul class="flex flex-col bg-orange-100 dark:bg-[#131313]">
-              <li
-                v-for="(s, i) in allStatus"
-                :key="'status-' + i"
-                @click="changeStatus(s)"
-                :class="[
-                  'px-4 py-2 hover:cursor-pointer border-b border-orange-200 dark:border-gray-500 hover:bg-orange-50 dark:hover:bg-black',
-                  s.toLowerCase(),
-                ]"
-                v-text="s"
-              ></li>
-            </ul>
-          </Dropdown>
+          <client-only>
+            <ReadStatus :name="nodeId" />
+          </client-only>
           <span
             class="hover:cursor-pointer dark:text-white"
             @click="closeSidebar"
@@ -100,18 +80,13 @@ import { useRoute, useRouter } from "vue-router";
 import { ref, onMounted } from "vue";
 import Roadmap from "@/components/Roadmap.vue";
 import HeroSection from "@/layouts/hero.vue";
-import Dropdown from "v-dropdown";
+import ReadStatus from "@/components/sidebar/ReadStatus.vue";
 
-const { $locally } = useNuxtApp();
-
-const allStatus = ["Pendiente", "Leyendo", "Completado", "Omitir"];
 const { push } = useRouter();
 const route = useRoute();
 const nodeId = route.params.slug;
 const showSidebar = ref(true);
 const content = ref(null);
-const statusDropDown = ref(null);
-const status = ref($locally.get(nodeId) ?? "Pendiente");
 const isScrolled = ref(false);
 
 useSeoMeta({
@@ -145,41 +120,10 @@ const onScroll = (e) => {
 const sidebarClass = computed(() =>
   showSidebar.value ? "right-0 w-screen lg:w-2/4" : "w-screen"
 );
-
-function changeStatus(val) {
-  if (val == status.value) return;
-  if (!statusDropDown.value) return;
-  status.value = val;
-  $locally.set(nodeId, val);
-  statusDropDown.value.close();
-}
 </script>
 
 <style>
-.pendiente::before,
-.leyendo::before,
-.completado::before,
-.omitir::before {
-  content: "•";
-  margin-right: 5px;
-}
-
-.pendiente::before {
-  color: var(--tw-text-gray-950);
-}
-.leyendo::before {
-  color: var(--tw-text-orange-500);
-}
-.completado::before {
-  color: var(--tw-text-green-600);
-}
-.omitir::before {
-  color: var(--tw-text-slate-500);
-}
 article [id] {
   scroll-margin-top: 3.5rem;
-}
-.v-dropdown-container.v-dropdown-no-border {
-  border-radius: 0px !important;
 }
 </style>
