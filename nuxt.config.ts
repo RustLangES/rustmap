@@ -11,7 +11,9 @@ export default defineNuxtConfig({
   ogImage: { enabled: false },
   nitro: {
     prerender: {
-      crawlLinks: true,
+      // crawlLinks: true,
+      // concurrency: 250,
+      // interval: 100,
       routes: ['/sitemap.xml']
     }
   },
