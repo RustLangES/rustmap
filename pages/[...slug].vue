@@ -3,7 +3,7 @@
   <HeroSection />
   <Roadmap />
   <Teleport to="body">
-    <div v-if="content" :class="['fixed top-0 h-screen', sidebarClass]">
+    <div v-if="content" :class="['fixed top-0 h-screen z-10', sidebarClass]">
       <div
         id="sidebar"
         class="scroll-smooth prose dark:prose-invert max-w-full flex overflow-y-auto overflow-x-hidden h-full w-full flex-col items-center p-4 focus:outline-0 sm:p-6 bg-orange-50 dark:bg-[#131313]/90 border-l-2 dark:backdrop-blur-xl border-black dark:border-0"

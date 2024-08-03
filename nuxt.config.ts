@@ -1,3 +1,5 @@
+const generateContentRoutes = require('./generateContentRoutes');
+
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   devtools: { enabled: true },
@@ -11,10 +13,7 @@ export default defineNuxtConfig({
   ogImage: { enabled: false },
   nitro: {
     prerender: {
-      // crawlLinks: true,
-      // concurrency: 250,
-      // interval: 100,
-      routes: ['/sitemap.xml']
+      routes: ['/sitemap.xml'],
     }
   },
   app: {
@@ -40,4 +39,13 @@ export default defineNuxtConfig({
       }
     },
   },
+  hooks: {
+    async 'prerender:routes'(ctx) {
+      const contentRoutes = await generateContentRoutes();
+
+      for (const route of contentRoutes) {
+        ctx.routes.add(route)
+      }
+    }
+  }
 })

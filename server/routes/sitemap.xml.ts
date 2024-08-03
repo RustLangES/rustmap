@@ -3,16 +3,17 @@ import { SitemapStream, streamToPromise } from 'sitemap'
 
 export default defineEventHandler(async (event) => {
   // Fetch all documents
-  const docs = await serverQueryContent(event).find()
-  const sitemap = new SitemapStream()
+  const articles = await serverQueryContent(event).find()
+  const sitemap = new SitemapStream({ hostname: 'https://roadmap.rustlang-es.org/' })
 
-  for (const doc of docs) {
-    sitemap.write({
-      url: doc._path,
-      changefreq: 'monthly'
-    })
-  }
+  console.log(articles)
+
+  articles.forEach(article => sitemap.write({ url: article._path, img: [ {
+    url: `https://roadmap.rustlang-es.org/previews/${article._path.substring(1).replaceAll('/', "-")}.png`,
+    caption: article.description,
+    title: article.title,
+  }, ] }))
   sitemap.end()
 
-  return streamToPromise(sitemap)
+  return (await streamToPromise(sitemap))
 })
