@@ -29,7 +29,7 @@ jobs:
         run: bun install
 
       - name: Build
-        run: bunx nuxi generate --preset=cloudflare_pages
+        run: bunx nuxi build --preset=cloudflare
 
       - name: Deploy
         uses: cloudflare/wrangler-action@v3

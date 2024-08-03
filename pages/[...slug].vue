@@ -1,9 +1,7 @@
 <template>
   <Header />
   <HeroSection />
-  <client-only>
-    <Roadmap />
-  </client-only>
+  <Roadmap />
   <Teleport to="body">
     <div v-if="content" :class="['fixed top-0 h-screen', sidebarClass]">
       <div
