@@ -230,11 +230,22 @@ jobs:
           name: artifacts-dist-manifest
           path: dist-manifest.json
 
+  custom-changelog:
+    needs:
+      - plan
+      - build-local-artifacts
+      - build-global-artifacts
+    uses: ./.github/workflows/changelog.yml
+    with:
+      plan: ${{ needs.plan.outputs.val }}
+    secrets: inherit
+
   # Create a Github Release while uploading all files to it
   announce:
     needs:
       - plan
       - host
+      - custom-changelog
     # use "always() && ..." to allow us to wait for all publish jobs while
     # still allowing individual publish jobs to skip themselves (for prereleases).
     # "host" however must run to completion, no skipping allowed!
