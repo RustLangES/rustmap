@@ -71,7 +71,7 @@ jobs:
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: pages deploy ./dist --project-name=rustmap --branch "${{ env.BRANCH_NAME }}"
+          command: deploy ./dist --project-name=rustmap --branch "${{ env.BRANCH_NAME }}"
 
       - name: Extract hash from CF url Deploy
         run: |

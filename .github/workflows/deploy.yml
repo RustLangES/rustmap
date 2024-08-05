@@ -39,7 +39,7 @@ jobs:
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: pages deploy ./dist --project-name=rustmap
+          command: deploy ./dist --project-name=rustmap
           # secrets: |
           #   YOUR_SECRET
           #   YOUR_OTHER_SECRET
