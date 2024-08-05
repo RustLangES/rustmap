@@ -29,7 +29,7 @@ jobs:
         run: bun install
 
       - name: Build
-        run: bunx nuxi build --preset=cloudflare
+        run: bunx nuxi build --preset=cloudflare_pages
 
       - name: Deploy
         uses: cloudflare/wrangler-action@v3
@@ -39,7 +39,7 @@ jobs:
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: pages deploy ./dist --project-name=rustmap
+          command: pages deploy ./dist --project-name roadmap
           # secrets: |
           #   YOUR_SECRET
           #   YOUR_OTHER_SECRET
