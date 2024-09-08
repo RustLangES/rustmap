@@ -1,4 +1,3 @@
----
 title: 'Manejo de Errores'
 description: ''
 draft: true
@@ -6,10 +5,11 @@ data:
   type: 'custom'
   topicLevel: 'medium'
   position:
-    x: 300
-    y: 600
+    x: 390
+    y: 700
   sourcePosition:
     basic: 'left'
-  targetPosition: 
+  targetPosition:
+    result: 'top'
     cargo: 'bottom'
----
+    propagation-operator: 'right'

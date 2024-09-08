@@ -7,10 +7,10 @@ data:
   topicLevel: 'start'
   position:
     x: 200
-    y: 700
+    y: 750
   sourcePosition:
-    error-handling: 'top'
-  targetPosition: 
+    error-handling: 'right'
+  targetPosition:
     traits: 'bottom'
 ---
 # Titulo
