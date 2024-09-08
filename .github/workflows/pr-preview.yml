@@ -75,7 +75,7 @@ jobs:
 
       - name: Extract hash from CF url Deploy
         run: |
-          url_hash=$(echo "${{ steps.deploy.outputs.deployment-url }}" | sed -n 's|https://\([^.]*\).rustmap.*|\1|p')
+          url_hash=$(echo "${{ steps.deploy.outputs.deployment-url }}" | sed -n 's|https://\([^.]*\).roadmap.*|\1|p')
           echo "SHA_SHORT=$url_hash" >> $GITHUB_ENV
 
       - name: Create comment
