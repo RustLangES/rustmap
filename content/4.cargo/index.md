@@ -1,18 +1,20 @@
 ---
-title: 'Cargo'
-description: ''
+title: "Cargo"
+description: ""
 draft: true
 data:
-  type: 'custom'
-  topicLevel: 'start'
+  type: "custom"
+  topicLevel: "start"
   position:
     x: 200
     y: 750
   sourcePosition:
-    error-handling: 'right'
+    error-handling: "right"
   targetPosition:
-    traits: 'bottom'
+    traits: "bottom"
+    modules: "left"
 ---
+
 ## Introducción a Cargo: La Herramienta Esencial para el Ecosistema Rust
 
 Una de las razones por las que Rust se ha convertido en un lenguaje popular es su ecosistema robusto y bien integrado. En el corazón de este ecosistema está **Cargo**, la herramienta oficial para gestionar proyectos en Rust. Cargo no solo se encarga de la construcción de tus proyectos, sino también de la gestión de dependencias, pruebas, y mucho más. Este artículo explora los comandos y características más importantes de Cargo, ayudándote a aprovechar al máximo esta poderosa herramienta.
@@ -56,9 +58,11 @@ cargo add serde
 Esto agrega `serde` a tu archivo `Cargo.toml` bajo las dependencias estándar. Si quieres marcar una dependencia como opcional o específica de desarrollo, puedes usar las siguientes opciones:
 
 - **Dependencia de desarrollo:**
+
   ```bash
   cargo add --dev rand
   ```
+
   Esto agrega la dependencia bajo `[dev-dependencies]`, útil para herramientas y pruebas que no se incluyen en el binario final.
 
 - **Dependencia opcional:**
