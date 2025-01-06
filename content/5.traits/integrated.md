@@ -1,0 +1,209 @@
+---
+title: 'Traits Integrados'
+description: 'Entendiendo los Traits Más Importantes en Rust'
+draft: true
+data:
+  type: 'custom'
+  topicLevel: 'start'
+  position:
+    x: 200
+    y: 900
+  sourcePosition:
+    cargo: 'top'
+  targetPosition: 
+    smart-pointers: 'bottom'
+---
+### Entendiendo los Traits Más Importantes en Rust
+
+Rust incluye una rica colección de *traits* estándar que permiten a los tipos integrarse con el lenguaje y aprovechar comportamientos reutilizables. Estos *traits* son contratos que los tipos pueden implementar para adquirir funcionalidades específicas. Aquí exploraremos algunos de los más importantes, explicando sus conceptos y cómo aplicarlos.
+
+### **1. El Trait `Default`: Valores Predeterminados**
+El trait `Default` define un método para crear un valor predeterminado para un tipo. Esto es especialmente útil al inicializar estructuras grandes con valores predecibles.
+
+#### Definición
+```rust
+pub trait Default {
+    fn default() -> Self;
+}
+```
+
+#### Ejemplo
+```rust
+struct Config {
+    retries: u32,
+    verbose: bool,
+}
+
+impl Default for Config {
+    fn default() -> Self {
+        Config {
+            retries: 3,
+            verbose: false,
+        }
+    }
+}
+
+fn main() {
+    let default_config = Config::default();
+    println!("Retries: {}, Verbose: {}", default_config.retries, default_config.verbose);
+}
+```
+
+### **2. Los Traits `Clone` y `Copy`: Clonación y Copia**
+- **`Clone`**: Proporciona un método explícito para crear una copia profunda de un valor.
+- **`Copy`**: Es una versión implícita y más ligera de clonación, aplicable solo a tipos que se pueden copiar de manera trivial (como números primitivos).
+
+#### Definición
+```rust
+pub trait Clone {
+    fn clone(&self) -> Self;
+}
+
+pub trait Copy: Clone {}
+```
+
+#### Ejemplo
+```rust
+#[derive(Clone, Copy)]
+struct Point {
+    x: i32,
+    y: i32,
+}
+
+fn main() {
+    let p1 = Point { x: 1, y: 2 };
+    let p2 = p1; // Copia implícita
+    let p3 = p1.clone(); // Copia explícita
+    println!("p1: ({}, {}), p2: ({}, {}), p3: ({}, {})", p1.x, p1.y, p2.x, p2.y, p3.x, p3.y);
+}
+```
+
+#### Nota sobre `Copy`
+Un tipo que implementa `Copy` no puede tener campos que no lo implementen.
+
+### **3. Comparación: `PartialEq` y `Eq`**
+Rust proporciona dos traits para comparar tipos:
+- **`PartialEq`**: Permite verificar si dos valores son iguales (`==`) o diferentes (`!=`).
+- **`Eq`**: Es un subtipo de `PartialEq` que asegura que el operador `==` siempre sea reflexivo (es decir, `a == a` siempre es verdadero).
+
+#### Ejemplo
+```rust
+#[derive(PartialEq, Eq)]
+struct User {
+    id: u32,
+    name: String,
+}
+
+fn main() {
+    let user1 = User { id: 1, name: "Alice".to_string() };
+    let user2 = User { id: 1, name: "Alice".to_string() };
+
+    if user1 == user2 {
+        println!("Users are equal!");
+    }
+}
+```
+
+### **4. Ordenamiento: `PartialOrd` y `Ord`**
+- **`PartialOrd`**: Permite comparar valores con `<`, `>`, `<=`, `>=`.
+- **`Ord`**: Extiende `PartialOrd` para tipos totalmente ordenables.
+
+#### Ejemplo
+```rust
+#[derive(PartialOrd, Ord, PartialEq, Eq)]
+struct Item {
+    price: u32,
+}
+
+fn main() {
+    let item1 = Item { price: 10 };
+    let item2 = Item { price: 20 };
+
+    if item1 < item2 {
+        println!("Item1 is cheaper than Item2");
+    }
+}
+```
+
+### **5. Traits de Funciones: `Fn`, `FnMut` y `FnOnce`**
+Estos traits representan diferentes tipos de clausuras (*closures*).
+
+- **`FnOnce`**: Consumo único.  
+- **`FnMut`**: Clausura mutable.  
+- **`Fn`**: Clausura inmutable.
+
+#### Ejemplo
+```rust
+fn execute<F>(operation: F)
+where
+    F: FnOnce(),
+{
+    operation();
+}
+
+fn main() {
+    let greeting = "Hello".to_string();
+    execute(|| println!("{}", greeting)); // FnOnce
+}
+```
+
+### **6. El Trait `Drop`: Limpiar Recursos**  
+Permite ejecutar lógica personalizada cuando un valor sale de alcance.
+
+#### Ejemplo
+```rust
+struct Resource {
+    name: String,
+}
+
+impl Drop for Resource {
+    fn drop(&mut self) {
+        println!("Releasing resource: {}", self.name);
+    }
+}
+
+fn main() {
+    let _res = Resource { name: "FileHandle".to_string() };
+} // `_res` se libera aquí automáticamente.
+```
+
+### **7. Iteradores: `Iterator`**  
+El trait `Iterator` es fundamental para trabajar con iteraciones. Define cómo un tipo produce una secuencia de valores.
+
+#### Definición
+```rust
+pub trait Iterator {
+    type Item;
+    fn next(&mut self) -> Option<Self::Item>;
+}
+```
+
+#### Ejemplo
+```rust
+struct Counter {
+    count: u32,
+}
+
+impl Iterator for Counter {
+    type Item = u32;
+
+    fn next(&mut self) -> Option<Self::Item> {
+        if self.count < 5 {
+            self.count += 1;
+            Some(self.count)
+        } else {
+            None
+        }
+    }
+}
+
+fn main() {
+    let mut counter = Counter { count: 0 };
+    while let Some(value) = counter.next() {
+        println!("Count: {}", value);
+    }
+}
+```
+
+### **Conclusión**  
+Estos traits estándar son esenciales en Rust, ya que forman la base para operaciones comunes como clonación, comparación, iteración y manejo de recursos. Entender cómo y cuándo usarlos es clave para aprovechar todo el potencial de Rust y escribir código más limpio, seguro y eficiente.
