@@ -12,7 +12,6 @@ data:
     cargo: "top"
   targetPosition:
     smart-pointers: "bottom"
-    definition: "right"
 ---
 
 # Entendiendo los Traits en Rust: Contratos de Comportamiento y Modularidad
@@ -36,6 +35,8 @@ fn print_hello<T: fmt::Display>(item: T) {
 
 print_hello(42); // Funciona porque i32 implementa Display
 ```
+
+---
 
 ## Traits como comportamientos
 
