@@ -19,8 +19,6 @@ data:
 
 Una de las razones por las que Rust se ha convertido en un lenguaje popular es su ecosistema robusto y bien integrado. En el corazón de este ecosistema está **Cargo**, la herramienta oficial para gestionar proyectos en Rust. Cargo no solo se encarga de la construcción de tus proyectos, sino también de la gestión de dependencias, pruebas, y mucho más. Este artículo explora los comandos y características más importantes de Cargo, ayudándote a aprovechar al máximo esta poderosa herramienta.
 
----
-
 ### ¿Qué es Cargo?
 
 Cargo es el administrador de paquetes y herramienta de construcción para Rust. Es comparable a herramientas como `npm` en JavaScript o `pip` en Python, pero con un alcance más amplio. Cargo simplifica tareas esenciales como:
@@ -33,8 +31,6 @@ Cargo es el administrador de paquetes y herramienta de construcción para Rust. 
 
 Cuando inicias un proyecto en Rust con `cargo new`, Cargo crea una estructura de directorios estándar que incluye un archivo llamado `Cargo.toml`. Este archivo es el corazón de la configuración del proyecto, donde defines tus dependencias, características, y opciones de compilación.
 
----
-
 ### Construcción de Proyectos con `cargo build`
 
 El comando más básico es `cargo build`, que compila tu proyecto. Al ejecutarlo, Cargo genera los binarios en el directorio `target/debug` por defecto. Si necesitas una compilación optimizada para producción, puedes usar la opción `--release`:
@@ -44,8 +40,6 @@ cargo build --release
 ```
 
 Esto genera el binario en `target/release` con optimizaciones avanzadas, pero a costa de tiempos de compilación más largos. Es ideal para el código que se ejecutará en entornos de producción.
-
----
 
 ### Agregando y Eliminando Dependencias
 
@@ -79,8 +73,6 @@ cargo remove serde
 
 Esto actualiza automáticamente tu `Cargo.toml` y elimina la dependencia.
 
----
-
 ### Pruebas con `cargo test`
 
 Rust incorpora un sistema de pruebas potente, y Cargo facilita ejecutarlas con `cargo test`. Este comando compila y ejecuta las pruebas definidas en tu proyecto, incluyendo las funciones marcadas con `#[test]`. Cargo incluso configura un entorno de pruebas especial para garantizar consistencia.
@@ -97,8 +89,6 @@ Si necesitas pruebas más detalladas, puedes usar la opción `--nocapture` para 
 cargo test -- --nocapture
 ```
 
----
-
 ### Benchmarks con `cargo bench`
 
 Rust también soporta benchmarking, aunque esta funcionalidad requiere habilitar el feature `bench` en el archivo `Cargo.toml`. Una vez configurado, puedes usar:
@@ -108,8 +98,6 @@ cargo bench
 ```
 
 Esto ejecuta tus benchmarks usando la biblioteca estándar `test` y genera resultados detallados sobre el rendimiento.
-
----
 
 ### Características Avanzadas con Flags
 
@@ -142,8 +130,6 @@ Cargo incluye una serie de opciones para personalizar cómo se compila y configu
 
    Esto requiere la instalación del toolchain correspondiente con `rustup`.
 
----
-
 ### Más Allá de los Comandos Básicos
 
 Además de los comandos principales, Cargo incluye otras herramientas que vale la pena explorar:
@@ -172,16 +158,12 @@ Además de los comandos principales, Cargo incluye otras herramientas que vale l
   cargo check
   ```
 
----
-
 ### Recomendaciones y Consejos
 
 1. **Organiza tus dependencias:** Usa `[dependencies]`, `[dev-dependencies]` y `[build-dependencies]` adecuadamente para mantener un `Cargo.toml` limpio y claro.
 2. **Habilita solo las características necesarias:** Minimiza el uso de características opcionales para reducir el tamaño del binario y mejorar los tiempos de compilación.
 3. **Prueba siempre con `--release`:** Antes de desplegar, verifica que tu proyecto funciona correctamente en modo optimizado.
 4. **Explora las herramientas de la comunidad:** Crates como `cargo-watch` pueden mejorar tu flujo de trabajo al reconstruir automáticamente tu proyecto cuando detecta cambios.
-
----
 
 ### Conclusión
 
