@@ -3,7 +3,7 @@ const generateContentRoutes = require('./generateContentRoutes');
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   devtools: { enabled: true },
-  modules: ["@nuxt/content", "@nuxtjs/tailwindcss", "@nuxtjs/seo"],
+  modules: ["nitro-cloudflare-dev", "@nuxt/content", "@nuxtjs/tailwindcss", "@nuxtjs/seo"],
   site: {
     url: 'https://roadmap.rustlang-es.org',
     name: 'Hoja de Ruta Definitiva para Aprender Rust',
@@ -12,6 +12,11 @@ export default defineNuxtConfig({
   },
   ogImage: { enabled: false },
   nitro: {
+    preset: "cloudflare_module",
+    cloudflare: {
+      deployConfig: true,
+      nodeCompat: true
+    },
     prerender: {
       routes: ['/sitemap.xml'],
     }

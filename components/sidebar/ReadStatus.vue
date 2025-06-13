@@ -28,7 +28,7 @@
 
 <script setup>
 import { ref } from "vue";
-import Dropdown from "v-dropdown";
+import { Dropdown } from "v-dropdown";
 
 const { $locally } = useNuxtApp();
 const allStatus = ["Pendiente", "Leyendo", "Completado", "Omitir"];

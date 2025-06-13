@@ -20,7 +20,7 @@ on:
 
 jobs:
   deploy:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -29,7 +29,7 @@ jobs:
         run: bun install
 
       - name: Build
-        run: bunx nuxi build --preset=cloudflare_pages
+        run: bunx nuxi build
 
       - name: Deploy
         uses: cloudflare/wrangler-action@v3
@@ -37,9 +37,10 @@ jobs:
           # YOUR_SECRET: ${{ secrets.YOUR_SECRET }}
           # YOUR_OTHER_SECRET: ${{ secrets.YOUR_OTHER_SECRET }}
         with:
+          wranglerVersion: "4.19.1"
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: pages deploy ./dist --project-name roadmap
+          command: deploy
           # secrets: |
           #   YOUR_SECRET
           #   YOUR_OTHER_SECRET
